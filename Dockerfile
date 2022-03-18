@@ -1,4 +1,5 @@
+
 FROM openjdk:latest
-COPY ./target/classes/com /tmp/com
+COPY ./target/group5-0.1.0.1-jar-with-dependencies.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "com.napier.group5.App"]
+ENTRYPOINT ["java", "-jar", "group5-0.1.0.1-jar-with-dependencies.jar"]
