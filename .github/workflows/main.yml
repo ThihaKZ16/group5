@@ -1,9 +1,9 @@
-name: A workflow for my Hello World App
+name: A workflow for Group5 Population Information System
 on: push
 
 jobs:
   build:
-    name: Hello world action
+    name: A workflow for Group5 Population Information System action
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
