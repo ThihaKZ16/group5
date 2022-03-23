@@ -1,25 +1,26 @@
 package com.napier.group5;
 
 public class City {
-    /*Code.
-    Name.
-    Country.
-    District.
-    Population.*/
+    /*ID
+             Name.
+             CountryCode.
+             District.
+             Population.
+             */
     private String name;
-    private String country;
+    private String countrycode;
     private String district;
     private float population;
 
-    public City(String name, String country, String district, float population) {
+    public City(String name, String countrycode, String district, float population) {
         this.name = name;
-        this.country = country;
+        this.countrycode = countrycode;
         this.district = district;
         this.population = population;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountryCode(String countrycode) {
+        this.countrycode = countrycode;
     }
 
 
@@ -37,8 +38,8 @@ public class City {
 
 
 
-    public String getCountry() {
-        return country;
+    public String getCountryCode() {
+        return countrycode;
     }
 
     public String getDistrict() {
