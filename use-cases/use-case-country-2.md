@@ -1,10 +1,9 @@
-# USE CASE: 1 Produce a Report All the countries in the world organised by largest population to smallest.
-
+# USE CASE: 2 All the countries in a continent organised by largest population to smallest.
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *Country Director* I want *to produce a report on all population in the world by countries * so that *I can support financial reporting of the organisation.*
+As an *Country Director* I want *to produce a report on all population in a continent by countries * so that *I can support financial reporting of the organisation.*
 
 ### Scope
 
@@ -36,9 +35,9 @@ A request for finance information is sent to population management system.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Finance request population information by countries.
+1. Finance request population information in a continent by all the countries.
 2. Country Director captures name of the countries to get population information for.
-3. Country Director extracts current world population information by countries from largest to smallest.
+3. Country Director extracts current population information by countries in a continent from largest to smallest.
 4. Country Director provides report to finance.
 
 ## EXTENSIONS
