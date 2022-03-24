@@ -17,9 +17,12 @@ public class App {
         // Connect to database
         a.connect("db:3306", 30000);
         // Disconnect from database
-        System.out.println("All the cities in the world organised by largest population to smallest.");
-        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
-        a.display(cities);
+        //System.out.println("All the cities in the world organised by largest population to smallest.");
+        //ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
+        //a.display(cities);
+        System.out.println("All the cities in a continent organised by largest population to smallest.");
+        ArrayList<City> cities1= a.getcitiesintheworldLargesttoSmallest();
+        a.display(cities1);
         a.disconnect();
     }
 
@@ -72,12 +75,25 @@ public class App {
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
-        //String name, String continent, String region, String capital, float population
+        //String name, String countrycode, String district,Float population
         while(rset.next())
         {City  ci = new City(rset.getString(1),rset.getString(2),rset.getString(3),rset.getFloat(4));
             cities.add(ci);
         }
         return cities;
+    }
+
+    public ArrayList<City> getcitiesinthecontinentLargesttoSmallest() throws SQLException {
+        String sql ="select name,countrycode,district,population from city where Continent=? order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        ArrayList<City> cities1 = new ArrayList<City>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {City  ci = new City(rset.getString(1),rset.getString(2),rset.getString(3),rset.getFloat(4));
+            cities1.add(ci);
+        }
+        return cities1;
     }
 
 
