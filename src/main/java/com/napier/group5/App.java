@@ -11,7 +11,7 @@ public class App {
     private Connection con = null;
 
     public static void main(String[] args) throws SQLException {
-        // Create new Application
+        // Create new Application and connect db
         App a = new App();
 
         // Connect to database
