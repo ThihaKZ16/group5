@@ -20,12 +20,12 @@ public class App {
         //System.out.println("All the cities in the world organised by largest population to smallest.");
         //ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
         //a.display(cities);
-        System.out.println("All the cities in a continent organised by largest population to smallest.");
-        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest();
-        a.display(cities1);
-       // System.out.println("All the cities in a continent organised by largest population to smallest.");
-       // ArrayList<City> cities2= a.getcitiesinaregionLargesttoSmallest();
-       // a.display(cities2);
+        //System.out.println("All the cities in a continent organised by largest population to smallest.");
+        //ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest();
+        //a.display(cities1);
+        System.out.println("All the cities in a region organised by largest population to smallest..");
+        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest();
+        a.display(cities2);
 
         a.disconnect();
     }
@@ -99,8 +99,8 @@ public class App {
         }
         return cities1;
     }
-    public ArrayList<City> getcitiesinaregionLargesttoSmallest() throws SQLException {
-        String sql ="select city.name,city.countrycode,city.district,city.population from city,country where country.region = ? order by Population desc";
+    public ArrayList<City> getcitiesintheregionLargesttoSmallest() throws SQLException {
+        String sql ="SELECT city.name,city.countrycode,city.district,city.population FROM city,country WHERE city.countrycode = country.code AND country.region= 'Southeast Asia' ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities2 = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
