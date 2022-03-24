@@ -18,12 +18,15 @@ public class App {
         a.connect("db:3306", 30000);
         // Disconnect from database
         System.out.println("In main");
-        ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
-        a.display(contries);
-        System.out.println("*****************************************************\nContinent\n");
-        ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
-        a.display(contries2);
+      //  ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
+      //  a.display(contries);
+        //System.out.println("*****************************************************\nContinent\n");
+       // ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
+       // a.display(contries2);
+        ArrayList<Country> contries3= a.getCountryPopbyRegion("Caribbean");
+        a.display(contries3);
         a.disconnect();
+
     }
 
     /**
@@ -96,7 +99,19 @@ public class App {
         }
         return countries;
     }
-
+    public ArrayList<Country> getCountryPopbyRegion(String contn) throws SQLException {
+        String sql ="select Name,Continent,Region, Capital, Population from country where Region=? order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,contn);
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+            countries.add(c);
+        }
+        return countries;
+    }
     public void display(ArrayList<Country> conts)
     {
         for(Country c: conts)

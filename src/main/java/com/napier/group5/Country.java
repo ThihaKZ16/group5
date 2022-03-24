@@ -1,5 +1,5 @@
 package com.napier.group5;
-
+//Build country class
 public class Country {
     /*Code.
     Name.
