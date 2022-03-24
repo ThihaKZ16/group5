@@ -21,8 +21,12 @@ public class App {
         //ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
         //a.display(cities);
         System.out.println("All the cities in a continent organised by largest population to smallest.");
-        ArrayList<City> cities1= a.getcitiesintheworldLargesttoSmallest();
+        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest();
         a.display(cities1);
+       // System.out.println("All the cities in a continent organised by largest population to smallest.");
+       // ArrayList<City> cities2= a.getcitiesinaregionLargesttoSmallest();
+       // a.display(cities2);
+
         a.disconnect();
     }
 
@@ -84,7 +88,7 @@ public class App {
     }
 
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest() throws SQLException {
-        String sql ="select name,countrycode,district,population from city where Continent=? order by Population desc";
+        String sql ="SELECT city.name,city.countrycode,city.district,city.population FROM city,country WHERE city.countrycode = country.code AND country.continent= 'Asia' ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities1 = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
@@ -94,6 +98,18 @@ public class App {
             cities1.add(ci);
         }
         return cities1;
+    }
+    public ArrayList<City> getcitiesinaregionLargesttoSmallest() throws SQLException {
+        String sql ="select city.name,city.countrycode,city.district,city.population from city,country where country.region = ? order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        ArrayList<City> cities2 = new ArrayList<City>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {City  ci = new City(rset.getString(1),rset.getString(2),rset.getString(3),rset.getFloat(4));
+            cities2.add(ci);
+        }
+        return cities2;
     }
 
 
