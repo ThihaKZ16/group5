@@ -21,7 +21,7 @@ public class App {
         ArrayList<Country> countries= a.getCountryPopLargesttoSmallest();
         a.display(countries);
 
-        System.out.println("All the countries in the world organised by largest population to smallest.");
+        System.out.println("All the countries in the continent organised by largest population to smallest.");
         ArrayList<Country> countries2= a.getCountryPopbyContinent("Asia");
         a.display(countries2);
 
