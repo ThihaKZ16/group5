@@ -45,6 +45,7 @@ public class App {
      * Connect to the MySQL database.
 
      */
+
     public void connect(String conString, int delay) {
         try {
             // Load Database driver
@@ -72,9 +73,11 @@ public class App {
             }
         }
     }
+
     /**
      * Disconnect from the MySQL database.
      */
+
     public void disconnect() {
         if (con != null) {
             try {
@@ -85,6 +88,8 @@ public class App {
             }
         }
     }
+
+    //Extract the output of all the cities in the world organised by largest population to smallest.
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql ="select name,countrycode,district,population from city order by Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -98,6 +103,7 @@ public class App {
         return cities;
     }
 
+    //Extract the output of all the cities in a continent organised by largest population to smallest.
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest() throws SQLException {
         String sql ="SELECT city.name,city.countrycode,city.district,city.population FROM city,country WHERE city.countrycode = country.code AND country.continent= 'Asia' ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -110,6 +116,8 @@ public class App {
         }
         return cities1;
     }
+
+    //Extract the output of all the cities in a region organised by largest population to smallest.
     public ArrayList<City> getcitiesintheregionLargesttoSmallest() throws SQLException {
         String sql ="SELECT city.name,city.countrycode,city.district,city.population FROM city,country WHERE city.countrycode = country.code AND country.region= 'Western Africa' ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -123,6 +131,7 @@ public class App {
         return cities2;
     }
 
+    //Extract the output of all the cities in a country organised by largest population to smallest.
     public ArrayList<City> getcitiesinthecountryLargesttoSmallest() throws SQLException {
         String sql ="SELECT name,countrycode,district,population FROM city WHERE countrycode='AUS' ORDER BY Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -136,6 +145,7 @@ public class App {
         return cities3;
     }
 
+    //Extract the output of all the cities in a district organised by largest population to smallest.
     public ArrayList<City> getcitiesinthedistrictLargesttoSmallest() throws SQLException {
         String sql ="SELECT name,countrycode,district,population FROM city WHERE district='Dubai' ORDER BY Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -149,6 +159,7 @@ public class App {
         return cities4;
     }
 
+    //Display function
     public void display(ArrayList<City> conts)
     {
         for(City ci: conts)
