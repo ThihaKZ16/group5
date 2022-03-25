@@ -7,6 +7,7 @@ public class Country {
     Region.
     Population.
     Capital. */
+    private String code;
     private String name;
     private String continent;
     private String region;
@@ -17,7 +18,8 @@ public class Country {
         this.continent = continent;
     }
 
-    public Country(String name, String continent, String region, String capital, float population) {
+    public Country(String code, String name, String continent, String region, String capital, float population) {
+        this.code = code;
         this.name = name;
         this.continent = continent;
         this.region = region;
@@ -36,7 +38,12 @@ public class Country {
     public void setPopulation(float population) {
         this.population = population;
     }
-
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public String getCode() {
+        return code;
+    }
     public String getContinent() {
         return continent;
     }
