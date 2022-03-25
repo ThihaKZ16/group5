@@ -74,49 +74,49 @@ public class App {
         }
     }
     public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
-        String sql ="select Name,Continent,Region, Capital, Population from country order by Population desc";
+        String sql ="select Code, Name,Continent,Region, Capital, Population from country order by Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<Country> countries = new ArrayList<Country>();
         ResultSet rset =pstmt.executeQuery();
         //String name, String continent, String region, String capital, float population
         while(rset.next())
-        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getString(5),rset.getFloat(6));
             countries.add(c);
         }
         return countries;
     }
 
     public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
-        String sql ="select Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
+        String sql ="select Code, Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,contn);
-        ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<Country> countries2 = new ArrayList<Country>();
         ResultSet rset =pstmt.executeQuery();
         //String name, String continent, String region, String capital, float population
         while(rset.next())
-        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
-            countries.add(c);
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4), rset.getString(5),rset.getFloat(6));
+            countries2.add(c);
         }
-        return countries;
+        return countries2;
     }
     public ArrayList<Country> getCountryPopbyRegion(String contn) throws SQLException {
-        String sql ="select Name,Continent,Region, Capital, Population from country where Region=? order by Population desc";
+        String sql ="select Code,Name,Continent,Region,Capital,Population from country where Region=? order by Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,contn);
-        ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<Country> countries3 = new ArrayList<Country>();
         ResultSet rset =pstmt.executeQuery();
         //String name, String continent, String region, String capital, float population
         while(rset.next())
-        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
-            countries.add(c);
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4), rset.getString(5),rset.getFloat(6));
+            countries3.add(c);
         }
-        return countries;
+        return countries3;
     }
     public void display(ArrayList<Country> conts)
     {
         for(Country c: conts)
         {
-            System.out.println(c.getName()+"\t"+c.getContinent()+"\t"+c.getRegion()+"\t"+c.getCapital()+"\t"+c.getPopulation());
+            System.out.println(c.getCode()+"\t"+c.getName()+"\t"+c.getContinent()+"\t"+c.getRegion()+"\t"+c.getCapital()+"\t"+c.getPopulation());
         }
     }
 
