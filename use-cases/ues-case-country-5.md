@@ -3,7 +3,7 @@
 
 ### Goal in Context
 
-As an *Country Director* I want *to produce a report on top 10 populated countries in a continent * so that *I can support financial reporting of the organisation.*
+As an *Executive Director* I want *to produce a report on top 10 populated countries in a continent * so that *I can provide economic development plan.*
 
 ### Scope
 
@@ -27,7 +27,7 @@ No report is produced.
 
 ### Primary Actor
 
-Country Director.
+Executive Director.
 
 ### Trigger
 
@@ -36,9 +36,9 @@ A request for finance information is sent to population management system.
 ## MAIN SUCCESS SCENARIO
 
 1. Finance request top 10 populated country information in a continent.
-2. Country Director captures name of the countries to get population information for.
-3. Country Director extracts top 10 populated countries in a continent.
-4. Country Director provides report to Finance.
+2. Executive Director captures name of the countries to get population information for.
+3. Executive Director extracts top 10 populated countries in a continent.
+4. Executive Director provides report to Finance.
 
 ## EXTENSIONS
 
