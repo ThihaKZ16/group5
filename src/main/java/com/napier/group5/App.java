@@ -17,15 +17,13 @@ public class App {
         // Connect to database
         a.connect("db:3306", 30000);
 
-        System.out.println("All the countries in this WORLD  organised by largest population to smallest.");
+        
         ArrayList<Country> countries= a.getCountryPopLargesttoSmallest();
         a.display(countries);
 
-        System.out.println("All the countries in a continent organised by largest population to smallest.");
         ArrayList<Country> countries2= a.getCountryPopbyContinent("Asia");
         a.display(countries2);
 
-        System.out.println("All the countries in a region organised by largest population to smallest.");
         ArrayList<Country> countries3= a.getCountryPopbyRegion("Caribbean");
         a.display(countries3);
 
