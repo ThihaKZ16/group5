@@ -11,7 +11,7 @@ public class App {
     private Connection con = null;
 
     public static void main(String[] args) throws SQLException {
-        // Create new Application
+        // Create new Application and connect db
         App a = new App();
 
         // Connect to database
@@ -38,14 +38,25 @@ public class App {
         a.display(cities4);
 
         // Disconnect from database
+
+        // Disconnect from  database
+        System.out.println("In main");
+        ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
+        a.display(contries);
+        System.out.println("*****************************************************\nContinent\n");
+        ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
+        a.display(contries2);
+        ArrayList<Country> contries3= a.getCountryPopbyRegion("Caribbean");
+        a.display(contries3);
+
         a.disconnect();
+
     }
 
     /**
      * Connect to the MySQL database.
 
      */
-
     public void connect(String conString, int delay) {
         try {
             // Load Database driver
@@ -73,11 +84,9 @@ public class App {
             }
         }
     }
-
     /**
      * Disconnect from the MySQL database.
      */
-
     public void disconnect() {
         if (con != null) {
             try {
@@ -88,8 +97,46 @@ public class App {
             }
         }
     }
+    public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
+        String sql ="select Code, Name,Continent,Region, Capital, Population from country order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getString(5),rset.getFloat(6));
+            countries.add(c);
+        }
+        return countries;
+    }
 
-    //Extract the output of all the cities in the world organised by largest population to smallest.
+    public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
+        String sql ="select Code, Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,contn);
+        ArrayList<Country> countries2 = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4), rset.getString(5),rset.getFloat(6));
+            countries2.add(c);
+        }
+        return countries2;
+    }
+    public ArrayList<Country> getCountryPopbyRegion(String contn) throws SQLException {
+        String sql ="select Code,Name,Continent,Region,Capital,Population from country where Region=? order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,contn);
+        ArrayList<Country> countries3 = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4), rset.getString(5),rset.getFloat(6));
+            countries3.add(c);
+        }
+        return countries3;
+    }
+   //Extract the output of all the cities in the world organised by largest population to smallest.
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql ="select name,countrycode,district,population from city order by Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -165,6 +212,13 @@ public class App {
         for(City ci: conts)
         {
             System.out.println(ci.getName()+"\t"+ci.getCountryCode()+"\t"+ci.getDistrict()+"\t"+ci.getPopulation());
+        }
+    }
+    public void display(ArrayList<Country> contries)
+    {
+        for(Country c: contries)
+        {
+            System.out.println(c.getCode()+"\t"+c.getName()+"\t"+c.getContinent()+"\t"+c.getRegion()+"\t"+c.getCapital()+"\t"+c.getPopulation());
         }
     }
 
