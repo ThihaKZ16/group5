@@ -212,9 +212,9 @@ public class App {
     }
 
     //Display function
-    public void display(ArrayList<City> conts)
+    public void display(ArrayList<City> cities)
     {
-        for(City ci: conts)
+        for(City ci: cities)
         {
             System.out.println(ci.getName()+"\t"+ci.getCountryCode()+"\t"+ci.getDistrict()+"\t"+ci.getPopulation());
         }
