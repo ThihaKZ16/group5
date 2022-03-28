@@ -22,7 +22,7 @@ public class App {
         a.display(cities);
 
         System.out.println("All the cities in a continent organised by largest population to smallest.");
-        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Asia");
+        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest();
         a.display(cities1);
 
         System.out.println("All the cities in a region organised by largest population to smallest..");
