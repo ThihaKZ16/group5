@@ -16,7 +16,7 @@ public class App {
 
         // Connect to database
         a.connect("db:3306", 30000);
-        // Disconnect from database
+        // Disconnect from  database
         System.out.println("In main");
         ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
         a.display(contries);
