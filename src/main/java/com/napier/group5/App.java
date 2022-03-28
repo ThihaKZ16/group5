@@ -112,9 +112,9 @@ public class App {
         }
         return countries3;
     }
-    public void display(ArrayList<Country> conts)
+    public void display(ArrayList<Country> contries)
     {
-        for(Country c: conts)
+        for(Country c: contries)
         {
             System.out.println(c.getCode()+"\t"+c.getName()+"\t"+c.getContinent()+"\t"+c.getRegion()+"\t"+c.getCapital()+"\t"+c.getPopulation());
         }
