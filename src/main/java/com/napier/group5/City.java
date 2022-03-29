@@ -7,16 +7,22 @@ public class City {
              District.
              Population.
              */
-    private String name;
-    private String countrycode;
-    private String district;
-    private float population;
+    public String name;
+    public String countrycode;
+    public String district;
+    public float population;
+    public String continent;
+    public String region;
 
     public City(String name, String countrycode, String district, float population) {
         this.name = name;
         this.countrycode = countrycode;
         this.district = district;
         this.population = population;
+    }
+
+    public City() {
+
     }
 
     public void setCountryCode(String countrycode) {
