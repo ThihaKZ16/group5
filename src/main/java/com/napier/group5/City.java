@@ -13,6 +13,7 @@ public class City {
     public float population;
     public String continent;
     public String region;
+    public String coname;
 
     public City(String name, String countrycode, String district, float population) {
         this.name = name;

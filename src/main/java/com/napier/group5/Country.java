@@ -8,7 +8,7 @@ public class Country {
     Population.
     Capital. */
     public String code;
-    public String name;
+    public String coname;
     public String continent;
     public String region;
     public String capital;
@@ -20,7 +20,7 @@ public class Country {
 
     public Country() {
         this.code = code;
-        this.name = name;
+        this.coname = coname;
         this.continent = continent;
         this.region = region;
         this.capital = capital;
@@ -60,11 +60,11 @@ public class Country {
         return population;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String coname) {
+        this.coname = coname;
     }
 
     public String getName() {
-        return name;
+        return coname;
     }
 }
