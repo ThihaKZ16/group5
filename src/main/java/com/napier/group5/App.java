@@ -22,7 +22,7 @@ public class App {
         a.display(cities);
 
         System.out.println("\n All the cities in a continent organised by largest population to smallest.");
-        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("'Europe'");
+        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
         a.display(cities1);
 
         System.out.println("\n All the cities in a region organised by largest population to smallest..");
@@ -322,28 +322,7 @@ public class App {
         return cities9;
     }
 
-    //Extract the output of countries in a continent organised by largest population to smallest.
-//    public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
-//        String sql ="select Code, Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
-//        PreparedStatement pstmt =con.prepareStatement(sql);
-//        pstmt.setString(1,contn);
-//        ArrayList<Country> countries2 = new ArrayList<Country>();
-//        ResultSet rset =pstmt.executeQuery();
-//        //String code, String name, String continent, String region, String capital, float population
-//        while(rset.next())
-//        {
-//            Country country = new Country();
-//            country.code= rset.getString("country.code");
-//            country.name= rset.getString("country.name");
-//            country.continent = rset.getString("country.continent");
-//            country.region=rset.getString("country.population");
-//            country.continent =rset.getString("country.continent");
-//            country.region = rset.getString("country.region");
-//            country.capital
-//            countries1.add(country);
-//        }
-//        return countries1;
-//    }
+
 
     public void display(ArrayList<City> report)
     {
@@ -363,21 +342,5 @@ public class App {
     }
 
 }
-//    public void display1(ArrayList<Country> report)
-//    {
-//        // Print header
-//        System.out.println("-------------------------------------------------------------------------------");
-//        System.out.printf(String.format("%-10s %-15s %-20s %-8s %-10s %-15s", "City Name", "Country Code", "District", "Population","Continent","Region"));
-//        System.out.println("-------------------------------------------------------------------------------");
-//        // Loop over all cities in the list
-//        for(Country country: report)
-//        {
-//            String city_string =
-//                    String.format("%-10s %-15s %-20s %-8s %-10s %-15s",
-//                            country.code,country.name, country.continent, country.region,country.region,country.capital,country.population);
-//            System.out.println(city_string);
-//            System.out.println("-------------------------------------------------------------------------------");
-//        }
-//    }
-//
-//}
+
+
