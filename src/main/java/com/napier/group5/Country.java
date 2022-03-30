@@ -7,20 +7,21 @@ public class Country {
     Region.
     Population.
     Capital. */
-    private String code;
-    private String name;
-    private String continent;
-    private String region;
-    private String capital;
-    private float population;
+    public String code;
+    public String coname;
+    public String continent;
+    public String region;
+    public Integer capital;
+    public String name;
+    public float population;
 
     public void setContinent(String continent) {
         this.continent = continent;
     }
 
-    public Country(String code, String name, String continent, String region, String capital, float population) {
+    public Country() {
         this.code = code;
-        this.name = name;
+        this.coname = coname;
         this.continent = continent;
         this.region = region;
         this.capital = capital;
@@ -31,7 +32,7 @@ public class Country {
         this.region = region;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(Integer capital) {
         this.capital = capital;
     }
 
@@ -52,7 +53,7 @@ public class Country {
         return region;
     }
 
-    public String getCapital() {
+    public Integer getCapital() {
         return capital;
     }
 
@@ -60,11 +61,11 @@ public class Country {
         return population;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String coname) {
+        this.coname = coname;
     }
 
     public String getName() {
-        return name;
+        return coname;
     }
 }

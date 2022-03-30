@@ -7,18 +7,29 @@ public class City {
              District.
              Population.
              */
-    private String name;
-    private String countrycode;
-    private String district;
-    private float population;
+    public Integer id;
+    public String name;
+    public String countrycode;
+    public String district;
+    public float population;
+    public String continent;
+    public String region;
+    public String coname;
 
-    public City(String name, String countrycode, String district, float population) {
+    public City(Integer id, String name, String countrycode, String district, float population) {
+        this.id = id;
         this.name = name;
         this.countrycode = countrycode;
         this.district = district;
         this.population = population;
     }
 
+    public City() {
+
+    }
+    public void setid(Integer id) {
+        this.id = id;
+    }
     public void setCountryCode(String countrycode) {
         this.countrycode = countrycode;
     }
@@ -37,7 +48,9 @@ public class City {
 
 
 
-
+    public Integer getid() {
+        return id;
+    }
     public String getCountryCode() {
         return countrycode;
     }
