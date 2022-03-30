@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class cities
+class cities
 {
     static App app;
 
@@ -54,3 +54,55 @@ public class cities
     }
 
 }
+
+class cities1
+{
+    static App app;
+
+    @BeforeAll
+    static void init()
+    {
+        app = new App();
+    }
+
+    @Test
+    void displayTestNull()
+    {
+        app.display(null);
+    }
+
+    @Test
+    void displayTestEmpty()
+    {
+        ArrayList<City> cities1 = new ArrayList<City>();
+        app.display(cities1);
+    }
+
+    @Test
+    void displayTestContainsNull()
+    {
+        ArrayList<City> cities1 = new ArrayList<City>();
+        cities1.add(null);
+        app.display(cities1);
+    }
+
+    @Test
+    void display()
+    {
+        ArrayList<City> cities1 = new ArrayList<City>();
+        City ci = new City();
+        ci.name= "Fengcheng";
+        ci.countrycode= "CHN" ;
+        ci.district = "Jiangxi";
+        ci.population= 193784;
+        ci.continent ="Asia";
+        ci.region = "Eastern Asia";
+        ci.coname= "China";
+
+        cities1.add(ci);
+        app.display(cities1);
+    }
+
+}
+
+
