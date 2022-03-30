@@ -104,6 +104,7 @@ public class App {
             }
         }
     }
+
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql =
                 "select city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
@@ -326,6 +327,12 @@ public class App {
 
     public void display(ArrayList<City> report)
     {
+        // Check city value is not null
+        if (report == null)
+        {
+            System.out.println("No null values in city data");
+            return;
+        }
         // Print header
         System.out.println("-------------------------------------------------------------------------------------------------------------------");
         System.out.printf(String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City Name", "Country Code", "District", "Population","Continent","Region","Country Name"));
@@ -333,6 +340,8 @@ public class App {
         // Loop over all cities in the list
         for(City ci: report)
         {
+            if (ci == null)
+                continue;
             String city_string =
                     String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s",
                             ci.name, ci.countrycode, ci.district, ci.population,ci.continent,ci.region,ci.coname);
