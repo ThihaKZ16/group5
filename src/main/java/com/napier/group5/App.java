@@ -20,6 +20,14 @@ public class App {
         ArrayList<Country> capital= a.getCapitalPopLargesttoSmallestintheworld();
         a.displaycapital(capital);
 
+        System.out.println("\n All the capital cities in a continent organised by largest population to smallest.");
+        ArrayList<Country> capital1= a.getCapitalPopLargesttoSmallestinacontinent("Asia");
+        a.displaycapital(capital1);
+
+        System.out.println("\n The top N populated capital cities in a continent where N is provided by the user.");
+        ArrayList<Country> capital2= a.gettopNpopulatedcapitalcity("Asia", 5);
+        a.displaycapital(capital2);
+
 //        System.out.println("\n All the countries in a continent organised by largest population to smallest.");
 //        ArrayList<Country> countries1= a.getCountryPopbyContinent("Asia");
 //        a.displaycountry(countries1);
@@ -109,6 +117,51 @@ public class App {
             capital.add(cap);
         }
         return capital;
+    }
+
+    public ArrayList<Country> getCapitalPopLargesttoSmallestinacontinent(String capitalcontinent) throws SQLException {
+        String sql ="select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.continent = ? order by city.population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,capitalcontinent);
+        ArrayList<Country> capital1 = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery(sql);
+        //String code, String name, String continent, String region, String capital-name, float population
+        while(rset.next())
+        {
+            Country cap = new Country();
+            cap.code = rset.getString("country.capital");
+            cap.coname= rset.getString("country.name");
+            cap.continent = rset.getString("country.continent");
+            cap.region = rset.getString("country.region");
+            cap.name = rset.getString("city.name");
+            cap.population = rset.getFloat("city.population");
+
+            capital1.add(cap);
+        }
+        return capital1;
+    }
+
+    public ArrayList<Country> gettopNpopulatedcapitalcity(String capitalcontinent, Integer number) throws SQLException {
+        String sql ="select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.continent = ? order by city.population desc limit?";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,capitalcontinent);
+        pstmt.setInt(2,number);
+        ArrayList<Country> capital2 = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery(sql);
+        //String code, String name, String continent, String region, String capital-name, float population
+        while(rset.next())
+        {
+            Country cap = new Country();
+            cap.code = rset.getString("country.capital");
+            cap.coname= rset.getString("country.name");
+            cap.continent = rset.getString("country.continent");
+            cap.region = rset.getString("country.region");
+            cap.name = rset.getString("city.name");
+            cap.population = rset.getFloat("city.population");
+
+            capital2.add(cap);
+        }
+        return capital2;
     }
 
 
