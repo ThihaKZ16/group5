@@ -26,7 +26,7 @@ public class App {
         a.display(cities1);
 
         System.out.println("\n All the cities in a region organised by largest population to smallest..");
-        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Nordic Countries");
+        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
         a.display(cities2);
 
         System.out.println("\n All the cities in a country organised by largest population to smallest..");
@@ -164,6 +164,7 @@ public class App {
             ci.population=rset.getFloat("city.population");
             ci.continent =rset.getString("country.continent");
             ci.region = rset.getString("country.region");
+            ci.coname= rset.getString("country.name");
             cities2.add(ci);
         }
         return cities2;
