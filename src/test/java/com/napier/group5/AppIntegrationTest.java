@@ -103,4 +103,23 @@ public class AppIntegrationTest
         assertEquals("Helsinki [Helsingfors]",city.getName());
     }
 
+    @Test
+    void getcitiesinthedistrict() throws SQLException {
+        ArrayList<City> cities4 = app.getcitiesinthedistrictLargesttoSmallest("Shanghai");
+        City city=null;boolean flag= false;
+        for (City c:cities4){
+            //1890,'Shanghai','CHN','Shanghai',9696300
+
+            if (c.getId() == 1890)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        //FIN','Finland','Europe','Nordic Countries
+        assertEquals(9696300,city.getPopulation());
+        assertEquals("CHN",city.getCountryCode());
+        assertEquals("Shanghai",city.getName());
+    }
+
 }
