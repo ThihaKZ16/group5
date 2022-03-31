@@ -14,6 +14,7 @@ public class cities
 {
     static App app;
     private Connection con = null;
+
     /**
      * Connect to the MySQL database.
 
