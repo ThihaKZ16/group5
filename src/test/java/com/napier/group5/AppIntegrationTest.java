@@ -83,4 +83,24 @@ public class AppIntegrationTest
 
     }
 
+    @Test
+    void getcitiesinthecountry() throws SQLException {
+        ArrayList<City> cities3 = app.getcitiesinthecountryLargesttoSmallest("Finland");
+        City city=null;boolean flag= false;
+        for (City c:cities3){
+            //3236,'Helsinki [Helsingfors]','FIN','Newmaa',555474
+
+            if (c.getId() == 3236)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        //FIN','Finland','Europe','Nordic Countries
+        assertEquals("Newmaa",city.getDistrict());
+        assertEquals(555474,city.getPopulation());
+        assertEquals("FIN",city.getCountryCode());
+        assertEquals("Helsinki [Helsingfors]",city.getName());
+    }
+
 }
