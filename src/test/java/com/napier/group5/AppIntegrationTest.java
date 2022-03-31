@@ -116,7 +116,7 @@ public class AppIntegrationTest
                 break;
             }
         }
-        //FIN','Finland','Europe','Nordic Countries
+        //'CHN','China','Asia','Eastern Asia'
         assertEquals(9696300,city.getPopulation());
         assertEquals("CHN",city.getCountryCode());
         assertEquals("Shanghai",city.getName());
