@@ -63,4 +63,5 @@ public class AppIntegrationTest
         assertEquals("South Dum Dum",city.getName());
         assertEquals(232811,city.getPopulation());
     }
+
 }
