@@ -151,7 +151,7 @@ public class App {
         return cities1;
     }
     public ArrayList<City> getcitiesintheregionLargesttoSmallest(String countryregion) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.region= ? ORDER BY city.Population DESC";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.region= ? ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryregion);
         ArrayList<City> cities2 = new ArrayList<City>();
@@ -160,20 +160,21 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities2.add(ci);
         }
         return cities2;
     }
     //Extract the output of all the cities in a country organised by largest population to smallest.
     public ArrayList<City> getcitiesinthecountryLargesttoSmallest(String countryname) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE country.code=city.countrycode AND country.name = ? ORDER BY city.Population DESC";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE country.code=city.countrycode AND country.name = ? ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryname);
         ArrayList<City> cities3 = new ArrayList<City>();
@@ -182,13 +183,14 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities3.add(ci);
         }
         return cities3;
@@ -196,7 +198,7 @@ public class App {
 
     //Extract the output of all the cities in a district organised by largest population to smallest.
     public ArrayList<City> getcitiesinthedistrictLargesttoSmallest(String citydistrict) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND city.district= ? ORDER BY city.Population DESC";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND city.district= ? ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,citydistrict);
         ArrayList<City> cities4 = new ArrayList<City>();
@@ -205,19 +207,20 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities4.add(ci);
         }
         return cities4;
     }
     public ArrayList<City> getTOPNumberofPopulatedCitiesinWorld(Integer number) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code ORDER BY city.Population DESC LIMIT ? ";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setInt(1,number);
         ArrayList<City> cities5= new ArrayList<City>();
@@ -226,19 +229,20 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities5.add(ci);
         }
         return cities5;
     }
     public ArrayList<City> getTOPNumberofpopulatedCitieswithcontinent(String countrycontinent,Integer number) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.continent = ? ORDER BY city.Population DESC LIMIT ? ";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.continent = ? ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countrycontinent);
         pstmt.setInt(2,number);
@@ -248,19 +252,20 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities6.add(ci);
         }
         return cities6;
     }
     public ArrayList<City> getTOPNumberofpopulatedCitieswithregion(String countryregion,Integer number) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.region = ? ORDER BY city.Population DESC LIMIT ? ";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.region = ? ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryregion);
         pstmt.setInt(2,number);
@@ -270,19 +275,20 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities7.add(ci);
         }
         return cities7;
     }
     public ArrayList<City> getTOPNumberofpopulatedCitieswithcountry(String countryname,Integer number) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND country.name = ? ORDER BY city.Population DESC LIMIT ? ";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND country.name = ? ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryname);
         pstmt.setInt(2,number);
@@ -292,19 +298,20 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities8.add(ci);
         }
         return cities8;
     }
     public ArrayList<City> getTOPNumberofpopulatedCitieswithdistrict(String citydistrict,Integer number) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND city.district = ? ORDER BY city.Population DESC LIMIT ? ";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND city.district = ? ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,citydistrict);
         pstmt.setInt(2,number);
@@ -314,13 +321,14 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities9.add(ci);
         }
         return cities9;
