@@ -116,7 +116,7 @@ public class App {
                 "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
-        ResultSet rset =pstmt.executeQuery(sql);
+        ResultSet rset =pstmt.executeQuery();
         //String name, String countrycode, String district,Float population
         while(rset.next())
         {
