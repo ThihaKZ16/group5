@@ -15,7 +15,12 @@ public class App {
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060", 0);
+        if(args.length < 1){
+            a.connect("localhost:33060", 0);
+        }else{
+            a.connect(args[0], Integer.parseInt(args[1]));
+        }
+
         // Disconnect from database
         System.out.println("\n All the cities in the world organised by largest population to smallest.");
         ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
@@ -85,6 +90,7 @@ public class App {
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
+                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -346,8 +352,8 @@ public class App {
         else {
             // Print header
             System.out.println("-------------------------------------------------------------------------------------------------------------------");
-            System.out.printf(String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City Name", "Country Code", "District", "Population", "Continent", "Region", "Country Name"));
-            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("\n%-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City Name", "Country Code", "District", "Population", "Continent", "Region", "Country Name"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
             // Loop over all cities in the list
             for (City ci : report) {
                 if (ci == null)
@@ -356,7 +362,7 @@ public class App {
                         String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s",
                                 ci.name, ci.countrycode, ci.district, ci.population, ci.continent, ci.region, ci.coname);
                 System.out.printf(city_string);
-                System.out.println("----------------------------------------------------------------------------------------------------------------");
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
             }
         }
     }
