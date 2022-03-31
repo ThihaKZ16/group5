@@ -22,9 +22,9 @@ public class App {
         }
 
         // Disconnect from database
-        System.out.println("\n All the cities in the world organised by largest population to smallest.");
-        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
-        a.display(cities);
+//        System.out.println("\n All the cities in the world organised by largest population to smallest.");
+//        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
+//        a.display(cities);
 
         System.out.println("\n All the cities in a continent organised by largest population to smallest.");
         ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
@@ -111,28 +111,28 @@ public class App {
         }
     }
 
-    public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
-        String sql =
-                "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
-        PreparedStatement pstmt =con.prepareStatement(sql);
-        ArrayList<City> cities = new ArrayList<City>();
-        ResultSet rset =pstmt.executeQuery();
-        //String name, String countrycode, String district,Float population
-        while(rset.next())
-        {
-            City ci = new City();
-            ci.setName(rset.getString("city.name"));
-            ci.setCountryCode(rset.getString("city.countrycode"));
-            ci.setDistrict(rset.getString("city.district"));
-            ci.setPopulation(rset.getFloat("city.population"));
-            ci.setContinent(rset.getString("country.continent"));
-            ci.setRegion(rset.getString("country.region"));
-            ci.setConame(rset.getString("country.name"));
-            ci.setId(rset.getInt(1));
-            cities.add(ci);
-        }
-        return cities;
-    }
+//    public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
+//        String sql =
+//                "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
+//        PreparedStatement pstmt =con.prepareStatement(sql);
+//        ArrayList<City> cities = new ArrayList<City>();
+//        ResultSet rset =pstmt.executeQuery();
+//        //String name, String countrycode, String district,Float population
+//        while(rset.next())
+//        {
+//            City ci = new City();
+//            ci.setName(rset.getString("city.name"));
+//            ci.setCountryCode(rset.getString("city.countrycode"));
+//            ci.setDistrict(rset.getString("city.district"));
+//            ci.setPopulation(rset.getFloat("city.population"));
+//            ci.setContinent(rset.getString("country.continent"));
+//            ci.setRegion(rset.getString("country.region"));
+//            ci.setConame(rset.getString("country.name"));
+//            ci.setId(rset.getInt(1));
+//            cities.add(ci);
+//        }
+//        return cities;
+//    }
 
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest(String countrycontinent) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.continent= ? ORDER BY city.Population DESC";
