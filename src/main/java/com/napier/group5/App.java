@@ -22,7 +22,7 @@ public class App {
         }
 
 
-        // Disconnect from database
+
         System.out.println("\n All the cities in the world organised by largest population to smallest.");
         ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
         a.display(cities);
@@ -63,6 +63,7 @@ public class App {
         ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
         a.display(cities9);
 
+        // Disconnect from database
         a.disconnect();
     }
 
