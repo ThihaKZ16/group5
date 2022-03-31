@@ -64,4 +64,23 @@ public class AppIntegrationTest
         assertEquals(232811,city.getPopulation());
     }
 
+    @Test
+    void getcitiesintheregion() throws SQLException {
+        ArrayList<City> cities2 = app.getcitiesintheregionLargesttoSmallest("British Islands");
+        City city=null;boolean flag= false;
+        for (City c:cities2){
+            //499,'Poole','GBR','England',141000
+
+            if (c.getId() == 499)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        //GBR','United Kingdom','Europe','British Islands
+        assertEquals("GBR",city.getCountryCode());
+        assertEquals("Poole",city.getName());
+
+    }
+
 }
