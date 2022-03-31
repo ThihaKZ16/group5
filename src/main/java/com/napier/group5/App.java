@@ -15,7 +15,7 @@ public class App {
         App a = new App();
 
         // Connect to database
-        a.connect("db:3306", 30000);
+        a.connect("localhost:33060", 0);
         // Disconnect from database
         System.out.println("\n All the cities in the world organised by largest population to smallest.");
         ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
@@ -107,7 +107,7 @@ public class App {
 
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql =
-                "select city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
+                "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery(sql);
@@ -115,20 +115,21 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities.add(ci);
         }
         return cities;
     }
 
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest(String countrycontinent) throws SQLException {
-        String sql ="SELECT city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.continent= ? ORDER BY city.Population DESC";
+        String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.continent= ? ORDER BY city.Population DESC";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countrycontinent);
         ArrayList<City> cities1 = new ArrayList<City>();
@@ -137,13 +138,14 @@ public class App {
         while(rset.next())
         {
             City ci = new City();
-            ci.name= rset.getString("city.name");
-            ci.countrycode= rset.getString("city.countrycode");
-            ci.district = rset.getString("city.district");
-            ci.population=rset.getFloat("city.population");
-            ci.continent =rset.getString("country.continent");
-            ci.region = rset.getString("country.region");
-            ci.coname= rset.getString("country.name");
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString("city.countrycode"));
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("city.population"));
+            ci.setContinent(rset.getString("country.continent"));
+            ci.setRegion(rset.getString("country.region"));
+            ci.setConame(rset.getString("country.name"));
+            ci.setId(rset.getInt(1));
             cities1.add(ci);
         }
         return cities1;
@@ -326,28 +328,28 @@ public class App {
 
 
 
-    public void display(ArrayList<City> report)
-    {
+    public void display(ArrayList<City> report) {
         // Check city value is not null
-        if (report == null)
-        {
+        if (report == null) {
             System.out.println("No null values in city data");
             return;
-        }
-        // Print header
-        System.out.println("-------------------------------------------------------------------------------------------------------------------");
-        System.out.printf(String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City Name", "Country Code", "District", "Population","Continent","Region","Country Name"));
-        System.out.println("-------------------------------------------------------------------------------------------------------------------");
-        // Loop over all cities in the list
-        for(City ci: report)
-        {
-            if (ci == null)
-                continue;
-            String city_string =
-                    String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s",
-                            ci.name, ci.countrycode, ci.district, ci.population,ci.continent,ci.region,ci.coname);
-            System.out.printf(city_string);
-            System.out.println("----------------------------------------------------------------------------------------------------------------");
+        } else if (report.size() == 0)
+            System.out.println("There is no country");
+        else {
+            // Print header
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City Name", "Country Code", "District", "Population", "Continent", "Region", "Country Name"));
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (City ci : report) {
+                if (ci == null)
+                    continue;
+                String city_string =
+                        String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s",
+                                ci.name, ci.countrycode, ci.district, ci.population, ci.continent, ci.region, ci.coname);
+                System.out.printf(city_string);
+                System.out.println("----------------------------------------------------------------------------------------------------------------");
+            }
         }
     }
 
