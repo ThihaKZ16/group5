@@ -15,7 +15,12 @@ public class App {
         App a = new App();
 
         // Connect to database
-        a.connect("db:3306", 30000);
+        if(args.length < 1){
+            a.connect("localhost:33060", 0);
+        }else{
+            a.connect(args[0], Integer.parseInt(args[1]));
+        }
+
 
         // Disconnect from database
         System.out.println("\n All the cities in the world organised by largest population to smallest.");
