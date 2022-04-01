@@ -14,11 +14,8 @@ public class App {
         // Create new Application and connect db
         App a = new App();
         // Connect to database
-        if (args.length < 1) {
-            a.connect("localhost:33060", 0);
-        } else {
-            a.connect(args[0], Integer.parseInt(args[1]));
-        }
+        a.connect("db:3306", 30000);
+
         ;
 
         System.out.println("\n All the countries in the world organised by largest population to smallest.");
