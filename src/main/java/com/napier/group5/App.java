@@ -362,7 +362,7 @@ public class App {
                     continue;
                 String city_string =
                         String.format("%-16s %-8s %-16s %-16s %-16s %-16s %-16s",
-                                ci.name, ci.countrycode, ci.district, ci.population, ci.continent, ci.region, ci.coname);
+                                ci.getId(), ci.getName(), ci.getCountryCode(), ci.getDistrict(), ci.getPopulation(), ci.getContinent(), ci.getRegion(), ci.getConame());
                 System.out.printf(city_string);
                 System.out.println("\n----------------------------------------------------------------------------------------------------------------");
             }

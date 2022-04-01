@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AppIntegrationTest
+public class CityIntegrationTest
 {
     static App app;
 
@@ -120,6 +120,25 @@ public class AppIntegrationTest
         assertEquals(9696300,city.getPopulation());
         assertEquals("CHN",city.getCountryCode());
         assertEquals("Shanghai",city.getName());
+    }
+
+    @Test
+    void TopNPopulatedCitiesintheWorld() throws SQLException {
+        ArrayList<City> cities5 = app.getTOPNumberofPopulatedCitiesinWorld(6);
+        City city=null;boolean flag= false;
+        for (City c:cities5){
+            //2331 Seoul KOR Seoul 9981619.0 Asia Eastern Asia
+
+            if (c.getId() == 2331)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        //'CHN','China','Asia','Eastern Asia'
+
+        assertEquals("KOR",city.getCountryCode());
+        assertEquals(9981619,city.getPopulation());
     }
 
 }
