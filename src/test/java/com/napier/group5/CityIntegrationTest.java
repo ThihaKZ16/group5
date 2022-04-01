@@ -174,7 +174,7 @@ public class CityIntegrationTest
 
     @Test
     void TopNPopulatedCitiesinaCountry() throws SQLException {
-        ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithdistrict("Argentina",10);
+        ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
         City city=null;boolean flag= false;
         for (City c:cities8){
             //73               Lomas de Zamora ARG              Buenos Aires     622013.0         South America    South America
