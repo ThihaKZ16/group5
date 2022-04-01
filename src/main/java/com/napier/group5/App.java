@@ -100,7 +100,7 @@ public class App {
         String sql = "select country.code, country.name, country.continent, country.region, city.name, country.population from country,city where country.capital = city.id order by country.population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> countries = new ArrayList<Country>();
-        ResultSet rset = pstmt.executeQuery();
+        ResultSet rset = pstmt.executeQuery(sql);
         //String code, String name, String continent, String region, String capital-name, float population
         while (rset.next()) {
             Country c = new Country();
