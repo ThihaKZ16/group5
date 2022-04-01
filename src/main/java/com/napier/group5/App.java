@@ -15,13 +15,12 @@ public class App {
         App a = new App();
 
         // Connect to database
+
         if(args.length < 1){
             a.connect("localhost:33060", 0);
         }else{
             a.connect(args[0], Integer.parseInt(args[1]));
         }
-
-
 
         System.out.println("\n All the cities in the world organised by largest population to smallest.");
         ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
@@ -227,6 +226,7 @@ public class App {
         }
         return cities4;
     }
+  
     public ArrayList<City> getTOPNumberofPopulatedCitiesinWorld(Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -272,6 +272,7 @@ public class App {
         }
         return cities6;
     }
+    
     public ArrayList<City> getTOPNumberofpopulatedCitieswithregion(String countryregion,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.region = ? ORDER BY city.Population DESC LIMIT ? ";
         PreparedStatement pstmt =con.prepareStatement(sql);
@@ -341,8 +342,6 @@ public class App {
         }
         return cities9;
     }
-
-
 
     public void display(ArrayList<City> report) {
         // Check city value is not null
