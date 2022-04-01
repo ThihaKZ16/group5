@@ -13,7 +13,7 @@ public class Countries
     static void init()
     {
         app = new App();
-        //app.connect("localhost:33060", 0);
+        app.connect("localhost:33060", 0);
     }
 
     @Test
@@ -44,7 +44,6 @@ public class Countries
         Country c = new Country();
         c.name= "Seoul";
         c.code= "KOR" ;
-
         c.continent ="Asia";
         c.region = "Eastern Asia";
         c.coname= "South Korea";
