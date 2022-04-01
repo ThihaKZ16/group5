@@ -236,7 +236,7 @@ public class App {
         } else if (countryreport.size() == 0)
             System.out.println("There is no country");
         else {
-                System.out.println("There is no country");
+
                 System.out.println("-------------------------------------------------------------------------------------------------------------------");
                 System.out.printf(String.format("%-16s %-25s %-20s %-20s %-20s %-16s", "Country Code", "Country Name", "Continent", "Region", "Capital City", "Population"));
                 System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
