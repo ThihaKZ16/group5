@@ -23,45 +23,45 @@ public class App {
 
 
 
-        System.out.println("\n All the cities in the world organised by largest population to smallest.");
-        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
-        a.display(cities);
-
-        System.out.println("\n All the cities in a continent organised by largest population to smallest.");
-        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
-        a.display(cities1);
-
-        System.out.println("\n All the cities in a region organised by largest population to smallest..");
-        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
-        a.display(cities2);
-
-        System.out.println("\n All the cities in a country organised by largest population to smallest..");
-        ArrayList<City> cities3= a.getcitiesinthecountryLargesttoSmallest("Finland");
-        a.display(cities3);
-
-        System.out.println("\n All the cities in a district organised by largest population to smallest..");
-        ArrayList<City> cities4= a.getcitiesinthedistrictLargesttoSmallest("Dubai");
-        a.display(cities4);
-
-        System.out.println("\n The top N populated cities in the world where N is provided by the user.");
-        ArrayList<City> cities5= a.getTOPNumberofPopulatedCitiesinWorld(6);
-        a.display(cities5);
-
-        System.out.println("\n The top N populated cities in a continent where N is provided by the user.");
-        ArrayList<City> cities6= a.getTOPNumberofpopulatedCitieswithcontinent("Asia",7);
-        a.display(cities6);
+//        System.out.println("\n All the cities in the world organised by largest population to smallest.");
+//        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
+//        a.display(cities);
+//
+//        System.out.println("\n All the cities in a continent organised by largest population to smallest.");
+//        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
+//        a.display(cities1);
+//
+//        System.out.println("\n All the cities in a region organised by largest population to smallest..");
+//        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
+//        a.display(cities2);
+//
+//        System.out.println("\n All the cities in a country organised by largest population to smallest..");
+//        ArrayList<City> cities3= a.getcitiesinthecountryLargesttoSmallest("Finland");
+//        a.display(cities3);
+//
+//        System.out.println("\n All the cities in a district organised by largest population to smallest..");
+//        ArrayList<City> cities4= a.getcitiesinthedistrictLargesttoSmallest("Dubai");
+//        a.display(cities4);
+//
+//        System.out.println("\n The top N populated cities in the world where N is provided by the user.");
+//        ArrayList<City> cities5= a.getTOPNumberofPopulatedCitiesinWorld(6);
+//        a.display(cities5);
+//
+//        System.out.println("\n The top N populated cities in a continent where N is provided by the user.");
+//        ArrayList<City> cities6= a.getTOPNumberofpopulatedCitieswithcontinent("Asia",7);
+//        a.display(cities6);
 
         System.out.println("\n The top N populated cities in a region where N is provided by the user.");
         ArrayList<City> cities7= a.getTOPNumberofpopulatedCitieswithregion("Western Africa",8);
         a.display(cities7);
 
-        System.out.println("\n The top N populated cities in a country where N is provided by the user.");
-        ArrayList<City> cities8= a.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
-        a.display(cities8);
-
-        System.out.println("\n The top N populated cities in a district where N is provided by the user.");
-        ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
-        a.display(cities9);
+//        System.out.println("\n The top N populated cities in a country where N is provided by the user.");
+//        ArrayList<City> cities8= a.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
+//        a.display(cities8);
+//
+//        System.out.println("\n The top N populated cities in a district where N is provided by the user.");
+//        ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
+//        a.display(cities9);
 
         // Disconnect from database
         a.disconnect();

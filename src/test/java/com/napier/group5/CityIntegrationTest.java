@@ -157,21 +157,19 @@ public class CityIntegrationTest
 
     @Test
     void TopNPopulatedCitiesinaRegion() throws SQLException {
-        ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithregion("Asia",3);
+        ArrayList<City> cities7 = app.getTOPNumberofpopulatedCitieswithregion("Western Africa",10);
         City city=null;boolean flag= false;
-        for (City c:cities6){
-            //1024             Mumbai (Bombay) IND              Maharashtra      1.05E7           Asia             Southern and Central Asia
-
-            if (c.getId() == 1024)
+        for (City c:cities7){
+            //2440             Monrovia         LBR              Montserrado      850000.0         Africa           Western Africa
+            if (c.getId() == 2440)
             {
                 city = c;flag = true;
                 break;
             }
         }
-        assertEquals("Mumbai (Bombay)",city.getName());
-        assertEquals("Maharashtra",city.getDistrict());
-        assertEquals("Asia", city.getContinent());
-        assertEquals("Southern and Central Asia", city.getRegion());
+        assertEquals("Africa",city.getContinent());
+        assertEquals(850000,city.getPopulation());
+        assertEquals("Monrovia",city.getName());
     }
 
 }
