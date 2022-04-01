@@ -172,4 +172,40 @@ public class CityIntegrationTest
         assertEquals("Monrovia",city.getName());
     }
 
+    @Test
+    void TopNPopulatedCitiesinaCountry() throws SQLException {
+        ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithdistrict("Argentina",10);
+        City city=null;boolean flag= false;
+        for (City c:cities8){
+            //73               Lomas de Zamora ARG              Buenos Aires     622013.0         South America    South America
+            if (c.getId() == 73)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        assertEquals("Buenos Aires",city.getDistrict());
+        assertEquals("ARG",city.getCountryCode());
+        assertEquals("South America",city.getRegion());
+    }
+
+    @Test
+    void TopNPopulatedCitiesinaDistrict() throws SQLException {
+        ArrayList<City> cities9 = app.getTOPNumberofpopulatedCitieswithdistrict("California",4);
+        City city=null;boolean flag= false;
+        for (City c:cities9){
+            //3805             San Francisco USA              California       776733.0         North America    North America
+            if (c.getId() == 3805)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        assertEquals("North America",city.getRegion());
+        assertEquals("USA", city.getCountryCode());
+        assertEquals(776733, city.getPopulation());
+        assertEquals("North America", city.getContinent());
+        assertEquals("United States", city.getConame());
+    }
+
 }
