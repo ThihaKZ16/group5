@@ -45,9 +45,6 @@ public class CityIntegrationTest
         assertEquals(3361700,city.getPopulation());
     }
 
-//    private void assertEquals(int i, float population) {
-//    }
-
     @Test
     void getcitiesinthecontinent() throws SQLException {
         ArrayList<City> cities1 = app.getcitiesinthecontinentLargesttoSmallest("Asia");
@@ -142,6 +139,25 @@ public class CityIntegrationTest
     @Test
     void TopNPopulatedCitiesinaContinent() throws SQLException {
         ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithcontinent("Asia",3);
+        City city=null;boolean flag= false;
+        for (City c:cities6){
+            //1024             Mumbai (Bombay) IND              Maharashtra      1.05E7           Asia             Southern and Central Asia
+
+            if (c.getId() == 1024)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        assertEquals("Mumbai (Bombay)",city.getName());
+        assertEquals("Maharashtra",city.getDistrict());
+        assertEquals("Asia", city.getContinent());
+        assertEquals("Southern and Central Asia", city.getRegion());
+    }
+
+    @Test
+    void TopNPopulatedCitiesinaRegion() throws SQLException {
+        ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithregion("Asia",3);
         City city=null;boolean flag= false;
         for (City c:cities6){
             //1024             Mumbai (Bombay) IND              Maharashtra      1.05E7           Asia             Southern and Central Asia
