@@ -152,10 +152,10 @@ public class CityIntegrationTest
                 break;
             }
         }
-        //'CHN','China','Asia','Eastern Asia'
-
-        assertEquals("KOR",city.getCountryCode());
-        assertEquals(9981619,city.getPopulation());
+        assertEquals("Mumbai (Bombay)",city.getName());
+        assertEquals("Maharashtra",city.getDistrict());
+        assertEquals("Asia", city.getContinent());
+        assertEquals("Southern and Central Asia", city.getRegion());
     }
 
 }
