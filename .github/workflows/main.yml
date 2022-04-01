@@ -34,7 +34,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Integration Tests
+      - name: Integration Tests and CodeCov
         run: |
           docker build -t database ./db
           docker run --name world -dp 33060:3306 database
@@ -42,6 +42,14 @@ jobs:
           docker stop world
           docker rm world
           docker image rm database
+      - name: CodeCov
+        uses: codecov/codecov-action@v2
+        with:
+            # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+            directory: ./target/site/jacoco
+            flags: Integration Tests # optional
+            verbose: true # optional (default = false)
+
 
 #  build:
 #    name: Build and Start Using docker-compose
@@ -60,3 +68,6 @@ jobs:
 #        run: |
 #          mvn package -DskipTests
 #          docker-compose up --abort-on-container-exit
+
+
+
