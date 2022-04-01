@@ -1,9 +1,10 @@
-name: A workflow for my Hello World App
-on: push
+name: A workflow for my Group5 App
+on:
+  push:
 
 jobs:
-  build:
-    name: Hello world action
+  UnitTests:
+    name: Unit Tests
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -15,7 +16,5 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Build with Maven
-        run: mvn package
-      - name: Run docker compose
-        run: docker-compose up --abort-on-container-exit
+      - name: Unit Tests
+        run: mvn -Dtest=com.napier.group5.Countries test

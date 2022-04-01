@@ -1,19 +1,27 @@
 package com.napier.group5;
 //Build country class
 public class Country {
+    public String getConame() {
+        return coname;
+    }
+
+    public void setConame(String coname) {
+        this.coname = coname;
+    }
+
     /*Code.
-    Name.
-    Continent.
-    Region.
-    Population.
-    Capital. */
+        Name.
+        Continent.
+        Region.
+        Population.
+        Capital. */
     public String code;
     public String coname;
     public String continent;
     public String region;
-    public Integer capital;
-    public String name;
+    public String capital;
     public float population;
+    public String name;
 
     public void setContinent(String continent) {
         this.continent = continent;
@@ -32,7 +40,7 @@ public class Country {
         this.region = region;
     }
 
-    public void setCapital(Integer capital) {
+    public void setCapital(String capital) {
         this.capital = capital;
     }
 
@@ -53,7 +61,7 @@ public class Country {
         return region;
     }
 
-    public Integer getCapital() {
+    public String getCapital() {
         return capital;
     }
 
@@ -69,3 +77,4 @@ public class Country {
         return coname;
     }
 }
+
