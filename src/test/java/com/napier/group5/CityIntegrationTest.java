@@ -127,9 +127,26 @@ public class CityIntegrationTest
         ArrayList<City> cities5 = app.getTOPNumberofPopulatedCitiesinWorld(6);
         City city=null;boolean flag= false;
         for (City c:cities5){
-            //2331 Seoul KOR Seoul 9981619.0 Asia Eastern Asia
+            //2331             Seoul    KOR              Seoul            9981619.0        Asia             Eastern Asia
 
             if (c.getId() == 2331)
+            {
+                city = c;flag = true;
+                break;
+            }
+        }
+        assertEquals("KOR",city.getCountryCode());
+        assertEquals(9981619,city.getPopulation());
+    }
+
+    @Test
+    void TopNPopulatedCitiesinaContinent() throws SQLException {
+        ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithcontinent("Asia",3);
+        City city=null;boolean flag= false;
+        for (City c:cities6){
+            //1024             Mumbai (Bombay) IND              Maharashtra      1.05E7           Asia             Southern and Central Asia
+
+            if (c.getId() == 1024)
             {
                 city = c;flag = true;
                 break;

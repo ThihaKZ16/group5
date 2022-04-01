@@ -354,7 +354,7 @@ public class App {
         else {
             // Print header
             System.out.println("-------------------------------------------------------------------------------------------------------------------");
-            System.out.printf(String.format("\n%-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City Name", "Country Code", "District", "Population", "Continent", "Region", "Country Name"));
+            System.out.printf(String.format("\n%-5s %-16s %-8s %-16s %-16s %-16s %-16s %-16s", "City ID", "City Name", "Country Code", "District", "Population", "Continent", "Region", "Country Name"));
             System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
             // Loop over all cities in the list
             for (City ci : report) {

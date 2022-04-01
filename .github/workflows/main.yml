@@ -2,7 +2,7 @@ name: A workflow for my Group5 App
 on:
   push:
     branches:
-      - city-report
+      - feature/city-report
       - Integration Test
 jobs:
   UnitTests:
