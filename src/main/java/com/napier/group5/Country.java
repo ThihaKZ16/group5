@@ -1,13 +1,7 @@
 package com.napier.group5;
 //Build country class
 public class Country {
-    public String getConame() {
-        return coname;
-    }
 
-    public void setConame(String coname) {
-        this.coname = coname;
-    }
 
     /*Code.
         Name.
@@ -23,9 +17,6 @@ public class Country {
     public float population;
     public String name;
 
-    public void setContinent(String continent) {
-        this.continent = continent;
-    }
 
     public Country() {
         this.code = code;
@@ -35,45 +26,60 @@ public class Country {
         this.capital = capital;
         this.population = population;
     }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public void setCapital(String capital) {
-        this.capital = capital;
-    }
-
-    public void setPopulation(float population) {
-        this.population = population;
-    }
     public void setCode(String code) {
         this.code = code;
     }
     public String getCode() {
         return code;
     }
+
+    public void setConame(String coname) {
+        this.coname = coname;
+    }
+    public String getConame() {
+        return coname;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
     public String getContinent() {
         return continent;
     }
 
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
     public String getRegion() {
         return region;
     }
 
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
     public String getCapital() {
         return capital;
     }
 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+
+
+    public void setPopulation(float population) {
+        this.population = population;
+    }
     public float getPopulation() {
         return population;
     }
 
-    public void setName(String coname) {
-        this.coname = coname;
-    }
 
-    public String getName() {
-        return coname;
-    }
+
+
 }

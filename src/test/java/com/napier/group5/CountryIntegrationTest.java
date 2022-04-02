@@ -38,7 +38,7 @@ public class CountryIntegrationTest
                 break;
             }
         }
-        assertEquals("Washington",country.getConame());
+        assertEquals("United States",country.getConame());
         assertEquals("North America",country.getContinent());
         assertEquals("North America",country.getRegion());
         assertEquals(2.78356992E8,country.getPopulation());
@@ -75,17 +75,17 @@ public class CountryIntegrationTest
         Country country=null;boolean flag= false;
         for (Country c:countries2){
             //1134,'South Dum Dum','IND','West Bengali',232811
-            if (c.getCode().equals("ANT"))
+            if (c.getCode().equals("CUB"))
             {
                 country = c;flag = true;
                 break;
             }
         }
 
-        assertEquals("Willemstad",country.getConame());
+        assertEquals("Cuba",country.getConame());
         assertEquals("North America",country.getContinent());
         assertEquals("Caribbean",country.getRegion());
-        assertEquals(217000.0,country.getPopulation());
+        assertEquals(1.1201E7,country.getPopulation());
 
     }
 
@@ -102,7 +102,7 @@ public class CountryIntegrationTest
             }
         }
 //        assertEquals("Japan",country.getConame());
-        assertEquals("Washington",country.getConame());
+        assertEquals("United States",country.getConame());
         assertEquals("North America",country.getContinent());
         assertEquals("North America",country.getRegion());
         assertEquals(2.78356992E8,country.getPopulation());
@@ -122,12 +122,13 @@ public class CountryIntegrationTest
             }
         }
 
-        assertEquals("Peking",country.getConame());
+        assertEquals("China",country.getConame());
         assertEquals("Asia",country.getContinent());
         assertEquals("Eastern Asia",country.getRegion());
         assertEquals(1.277558016E9,country.getPopulation());
 
     }
+
 
     @Test
     void gettopcountriesintheregion() throws SQLException {
@@ -135,17 +136,17 @@ public class CountryIntegrationTest
         Country country=null;boolean flag= false;
         for (Country c:countries5){
             //1134,'South Dum Dum','IND','West Bengali',232811
-            if (c.getCode().equals("CUB"))
+            if (c.getCode().equals("DOM"))
             {
                 country = c;flag = true;
                 break;
             }
         }
 
-        assertEquals("La Habana",country.getConame());
+        assertEquals("Dominican Republic",country.getConame());
         assertEquals("North America",country.getContinent());
         assertEquals("Caribbean",country.getRegion());
-        assertEquals(1.1201E7,country.getPopulation());
+        assertEquals(8495000,country.getPopulation());
 
     }
 
