@@ -1,4 +1,3 @@
-# Use the latest MySQL image
 FROM mysql
 COPY world.sql /docker-entrypoint-initdb.d
 
