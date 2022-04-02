@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//Integration testing using queries data
 public class CountryIntegrationTest
 {
     static App app;

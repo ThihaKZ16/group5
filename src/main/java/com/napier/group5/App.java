@@ -22,7 +22,7 @@ public class App {
         }
         
 
-      /*  System.out.println("\n All the countries in the world organised by largest population to smallest.");
+        System.out.println("\n All the countries in the world organised by largest population to smallest.");
         ArrayList<Country> countries = a.getCountryPopLargesttoSmallest();
         a.displaycountry(countries);
 
@@ -59,7 +59,7 @@ public class App {
         ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
         a.display(cities2);
 
-      /*  System.out.println("\n All the cities in a country organised by largest population to smallest..");
+        System.out.println("\n All the cities in a country organised by largest population to smallest..");
         ArrayList<City> cities3= a.getcitiesinthecountryLargesttoSmallest("Finland");
         a.display(cities3);
 
