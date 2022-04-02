@@ -1,18 +1,27 @@
 package com.napier.group5;
 //Build country class
 public class Country {
+    public String getConame() {
+        return coname;
+    }
+
+    public void setConame(String coname) {
+        this.coname = coname;
+    }
+
     /*Code.
-    Name.
-    Continent.
-    Region.
-    Population.
-    Capital. */
+        Name.
+        Continent.
+        Region.
+        Population.
+        Capital. */
     public String code;
     public String coname;
     public String continent;
     public String region;
     public String capital;
     public float population;
+    public String name;
 
     public void setContinent(String continent) {
         this.continent = continent;

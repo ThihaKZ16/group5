@@ -34,23 +34,6 @@ public class City {
     public String district;
     public float population;
     public String continent;
-
-    public String getCountrycode() {
-        return countrycode;
-    }
-
-    public String getContinent() {
-        return continent;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public String getConame() {
-        return coname;
-    }
-
     public String region;
     public String coname;
 
