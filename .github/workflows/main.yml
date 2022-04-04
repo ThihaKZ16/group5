@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - Integration Test
+      - Unit Test
 jobs:
   UnitTests:
     name: Unit Tests

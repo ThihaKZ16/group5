@@ -53,7 +53,7 @@ public class App {
 
         System.out.println("\n All the cities in a continent organised by largest population to smallest.");
         ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
-        a.display(cities1);*/
+        a.display(cities1);
 
         System.out.println("\n All the cities in a region organised by largest population to smallest..");
         ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
@@ -85,7 +85,7 @@ public class App {
 
         System.out.println("\n The top N populated cities in a district where N is provided by the user.");
         ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
-        a.display(cities9);*/
+        a.display(cities9);
 
         // Disconnect from database
         a.disconnect();
