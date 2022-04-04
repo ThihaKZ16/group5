@@ -2,7 +2,7 @@ name: A workflow for my Group5 App
 on:
   push:
     branches:
-      - feature/country-report
+      - feature/Population-report
       - Integration Test
 jobs:
   UnitTests:
@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
       - name: Unit Tests
         run: mvn -Dtest=com.napier.group5.Countries test
-        run: mvn -Dtest=com.napier.group5.cities test
+
 
   
 
