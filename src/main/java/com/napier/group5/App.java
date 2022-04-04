@@ -20,9 +20,34 @@ public class App {
         }else{
             a.connect(args[0], Integer.parseInt(args[1]));
         }
-        
 
-        System.out.println("\n All the countries in the world organised by largest population to smallest.");
+        System.out.println("\n Total population in the world");
+        ArrayList<Country> population1 = a.gettotalpopulationintheworld();
+        a.displaypopulation1(population1);
+
+        System.out.println("\n Total population in a continent");
+        ArrayList<Country> population2 = a.gettotalpopulationinthecontinent("Asia");
+        a.displaypopulation2(population2);
+
+        System.out.println("\n Total population in a region");
+        ArrayList<Country> population3 = a.gettotalpopulationintheregion("Micronesia");
+        a.displaypopulation3(population3);
+
+        System.out.println("\n Total population in a country");
+        ArrayList<Country> population4 = a.gettotalpopulationinthecountry("Japan");
+        a.displaypopulation4(population4);
+
+        System.out.println("\n Total population in a district");
+        ArrayList<City> population5 = a.gettotalpopulationinthedistrict("Zuid-Holland");
+        a.displaypopulation5(population5);
+
+        System.out.println("\n Total population in a city");
+        ArrayList<City> population6 = a.gettotalpopulationinthecity("Rangoon (Yangon)");
+        a.displaypopulation6(population6);
+
+
+
+      /*  System.out.println("\n All the countries in the world organised by largest population to smallest.");
         ArrayList<Country> countries = a.getCountryPopLargesttoSmallest();
         a.displaycountry(countries);
 
@@ -85,7 +110,7 @@ public class App {
 
         System.out.println("\n The top N populated cities in a district where N is provided by the user.");
         ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
-        a.display(cities9);
+        a.display(cities9);*/
 
         // Disconnect from database
         a.disconnect();
@@ -504,7 +529,128 @@ public class App {
         }
         return cities9;
     }
-     //display function
+
+    public ArrayList<Country> gettotalpopulationintheworld() throws SQLException {
+        String sql = "select SUM(country.population) AS worldtotal from country";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ArrayList<Country> population1 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+            //c.setConame(rset.getString("country.name"));
+            //c.setContinent(rset.getString("country.continent"));
+            // c.setRegion(rset.getString("country.region"));
+         //   c.setName(rset.getString("city.name"));
+            c.setPopulation(rset.getFloat("worldtotal"));
+            population1.add(c);
+        }
+        return population1;
+    }
+    public ArrayList<Country> gettotalpopulationinthecontinent(String contn) throws SQLException {
+        String sql = "select continent, SUM(country.population) AS totalcontinent from country where country.continent=?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<Country> population2 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+
+            c.setContinent(rset.getString("country.continent"));
+
+            c.setPopulation(rset.getFloat("totalcontinent"));
+
+
+            population2.add(c);
+        }
+        return population2;
+    }
+    public ArrayList<Country> gettotalpopulationintheregion(String contn) throws SQLException {
+        String sql = "select region, SUM(country.population) AS totalregion from country where country.region=?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<Country> population3 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+
+            c.setRegion(rset.getString("country.region"));
+
+            c.setPopulation(rset.getFloat("totalregion"));
+
+
+            population3.add(c);
+        }
+        return population3;
+    }
+    public ArrayList<Country> gettotalpopulationinthecountry(String contn) throws SQLException {
+        String sql = "select name, population from country where country.name=?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<Country> population4 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+
+            c.setConame(rset.getString("country.name"));
+
+            c.setPopulation(rset.getFloat("country.population"));
+
+
+            population4.add(c);
+        }
+        return population4;
+    }
+
+    public ArrayList<City> gettotalpopulationinthedistrict(String contn) throws SQLException {
+        String sql = "select district, SUM(city.population) AS totaldistrict from city where city.district=? GROUP BY city.countrycode";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<City> population5 = new ArrayList<City>();
+        ResultSet rset = pstmt.executeQuery();
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            City ci = new City();
+           // ci.setName(rset.getString("city.name"));
+
+            ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("totaldistrict"));
+
+            ci.setCountryCode(rset.getString(1));
+
+            population5.add(ci);
+        }
+        return population5;
+    }
+    public ArrayList<City> gettotalpopulationinthecity(String contn) throws SQLException {
+        String sql = "select city.countrycode, city.name,sum(city.population) as citynametotal from city where city.name = ? GROUP BY city.countrycode";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<City> population6 = new ArrayList<City>();
+        ResultSet rset = pstmt.executeQuery();
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            City ci = new City();
+
+          //  ci.setDistrict(rset.getString("city.district"));
+            ci.setPopulation(rset.getFloat("citynametotal"));
+            ci.setName(rset.getString("city.name"));
+            ci.setCountryCode(rset.getString(1));
+
+            population6.add(ci);
+        }
+        return population6;
+    }
+
+
+    //display function for country branch
     public void displaycountry(ArrayList<Country> countryreport) {
         if (countryreport == null) {
             System.out.println("No null values in country data");
@@ -553,6 +699,146 @@ public class App {
             }
         }
       }
+    public void displaypopulation1(ArrayList<Country> populationreport) {
+        if (populationreport == null) {
+            System.out.println("No null values in Population data");
+            return;
+        } else if (populationreport.size() == 0)
+            System.out.println("There is no total population in the world");
+        else {
+
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s", "Total Population"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (Country c : populationreport) {
+                if (c == null)
+                    continue;
+                String population_string =
+                        String.format("%-16s",
+                                c.getPopulation());
+                System.out.printf(population_string);
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+    public void displaypopulation2(ArrayList<Country> populationcontinent) {
+        if (populationcontinent == null) {
+            System.out.println("No null values in Population data");
+            return;
+        } else if (populationcontinent.size() == 0)
+            System.out.println("There is no total population in the continent");
+        else {
+
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s %-16s", "Total Population ","Continent"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (Country c : populationcontinent) {
+                if (c == null)
+                    continue;
+                String population_string =
+                        String.format("%-16s %-16s",
+                                c.getPopulation(),c.getContinent());
+                System.out.printf(population_string);
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+    public void displaypopulation3(ArrayList<Country> populationregion) {
+        if (populationregion == null) {
+            System.out.println("No null values in Population data");
+            return;
+        } else if (populationregion.size() == 0)
+            System.out.println("There is no total population in the Region");
+        else {
+
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s %-16s", "Total Population ","Region"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (Country c : populationregion) {
+                if (c == null)
+                    continue;
+                String population_string =
+                        String.format("%-16s %-16s",
+                                c.getPopulation(),c.getRegion());
+                System.out.printf(population_string);
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+    public void displaypopulation4(ArrayList<Country> populationcountry) {
+        if (populationcountry == null) {
+            System.out.println("No null values in Population data");
+            return;
+        } else if (populationcountry.size() == 0)
+            System.out.println("There is no total population in the Country");
+        else {
+
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s %-16s", "Total Population ","Country"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (Country c : populationcountry) {
+                if (c == null)
+                    continue;
+                String population_string =
+                        String.format("%-16s %-16s",
+                                c.getPopulation(),c.getConame());
+                System.out.printf(population_string);
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+    public void displaypopulation5(ArrayList<City> populationdistrict) {
+        if (populationdistrict == null) {
+            System.out.println("No null values in Population data");
+            return;
+        } else if (populationdistrict.size() == 0)
+            System.out.println("There is no total population in the district");
+        else {
+
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s %-19s", "Total Population ", "District"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (City ci : populationdistrict) {
+                if (ci == null)
+                    continue;
+                String population_string =
+                        String.format("%-16s %-19s",
+                                ci.getPopulation(),ci.getDistrict());
+                System.out.printf(population_string);
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+    public void displaypopulation6(ArrayList<City> populationcity) {
+        if (populationcity == null) {
+            System.out.println("No null values in Population data");
+            return;
+        } else if (populationcity.size() == 0)
+            System.out.println("There is no total population in the city");
+        else {
+
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(String.format("%-16s %-18s %-19s", "Total Population ", "City", "Countrycode"));
+            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+            // Loop over all cities in the list
+            for (City ci : populationcity) {
+                if (ci == null)
+                    continue;
+                String population_string =
+                        String.format("%-16s %-18s %-19s ",
+                                ci.getPopulation(),ci.getName(),ci.getCountryCode());
+                System.out.printf(population_string);
+                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+
+
 }
 
 
