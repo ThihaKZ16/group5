@@ -1,5 +1,6 @@
 package com.napier.group5;
 
+import javax.management.Query;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -44,6 +45,19 @@ public class App {
         System.out.println("\n Total population in a city");
         ArrayList<City> population6 = a.gettotalpopulationinthecity("Rangoon (Yangon)");
         a.displaypopulation6(population6);
+
+
+
+        System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
+        a.getpeoplelivingornotlivinginthecitiesineachcontinent("Asia");
+
+        System.out.println("The population of people, people living in cities, and people not living in cities in each region.");
+        a.getpeoplelivingornotlivinginthecitiesineachregion("Micronesia");
+
+        System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
+        a.getpeoplelivingornotlivinginthecitiesineachcountry("Japan");
+
+
 
 
 
@@ -649,6 +663,215 @@ public class App {
         return population6;
     }
 
+    public void getpeoplelivingornotlivinginthecitiesineachcontinent(String continent) throws SQLException {
+
+        String sql1 = "select" +
+                "(((select SUM(country.population) from country) -" +
+        "(select SUM(country.population) from country where country.continent=?))/(select SUM(country.population) from country) * 100) as peoplenotliving";
+       String sql2 = "select((select SUM(country.population) as peopleliving from country where country.continent=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
+       String sql3 = "select country.continent from country where country.continent=?";
+
+
+        PreparedStatement pstmt = con.prepareStatement(sql1);
+        PreparedStatement pstmt1 = con.prepareStatement(sql2);
+        PreparedStatement pstmt2 = con.prepareStatement(sql3);
+
+
+        pstmt.setString(1, continent);
+        ArrayList<Country> population7 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+            c.setPeoplenotliving(rset.getFloat("peoplenotliving"));
+
+            population7.add(c);
+
+
+
+        }
+
+            ArrayList<Country> population8 = new ArrayList<Country>();
+            pstmt1.setString(1,continent);
+            ResultSet rset1 = pstmt1.executeQuery();
+            while (rset1.next()) {
+                Country co = new Country();
+                co.setCode(rset1.getString(1));
+                co.setPeopleliving(rset1.getFloat("peopleliving"));
+
+
+
+                population8.add(co);
+
+            }
+        ArrayList<Country> population10 = new ArrayList<Country>();
+        pstmt2.setString(1,continent);
+        ResultSet rset2 = pstmt2.executeQuery();
+        while (rset2.next()) {
+            Country co = new Country();
+            co.setCode(rset2.getString(1));
+//            co.setPeopleliving(rset1.getFloat("peopleliving"));
+            co.setContinent(rset2.getString("country.continent"));
+
+
+            population10.add(co);
+
+        }
+     for(int i=0; i<population7.size();i++)
+       {
+           System.out.println("People Not Living in cities"+" "+population7.get(i).getPeoplenotliving()+"%");
+           for(int j=0; j<population8.size();j++)
+           {
+               System.out.println("People Living in cities"+" "+population8.get(j).getPeopleliving()+"%"+"\n"+"Continent"+" "+population10.get(j).getContinent());
+
+           }
+        }
+
+
+
+    }
+    public void getpeoplelivingornotlivinginthecitiesineachregion(String region) throws SQLException {
+
+        String sql1 = "select" +
+                "(((select SUM(country.population) from country) -" +
+                "(select SUM(country.population) from country where country.region=?))/(select SUM(country.population) from country) * 100) as peoplenotliving";
+        String sql2 = "select((select SUM(country.population) as peopleliving from country where country.region=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
+        String sql3 = "select country.region from country where country.region=?";
+
+
+        PreparedStatement pstmt = con.prepareStatement(sql1);
+        PreparedStatement pstmt1 = con.prepareStatement(sql2);
+        PreparedStatement pstmt2 = con.prepareStatement(sql3);
+
+
+        pstmt.setString(1, region);
+        ArrayList<Country> population7 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+            c.setPeoplenotliving(rset.getFloat("peoplenotliving"));
+
+            population7.add(c);
+
+
+
+        }
+
+        ArrayList<Country> population8 = new ArrayList<Country>();
+        pstmt1.setString(1,region);
+        ResultSet rset1 = pstmt1.executeQuery();
+        while (rset1.next()) {
+            Country co = new Country();
+            co.setCode(rset1.getString(1));
+            co.setPeopleliving(rset1.getFloat("peopleliving"));
+
+
+
+            population8.add(co);
+
+        }
+        ArrayList<Country> population10 = new ArrayList<Country>();
+        pstmt2.setString(1,region);
+        ResultSet rset2 = pstmt2.executeQuery();
+        while (rset2.next()) {
+            Country co = new Country();
+            co.setCode(rset2.getString(1));
+//            co.setPeopleliving(rset1.getFloat("peopleliving"));
+            co.setRegion(rset2.getString("country.region"));
+
+
+            population10.add(co);
+
+        }
+        for(int i=0; i<population7.size();i++)
+        {
+            System.out.println("People Not Living in cities"+" "+population7.get(i).getPeoplenotliving()+"%");
+            for(int j=0; j<population8.size();j++)
+            {
+                System.out.println("People Living in cities"+" "+population8.get(j).getPeopleliving()+"%"+"\n"+"Region"+" "+population10.get(j).getRegion());
+            }
+        }
+
+
+
+    }
+
+    public void getpeoplelivingornotlivinginthecitiesineachcountry(String country) throws SQLException {
+
+        String sql1 = "select" +
+                "(((select SUM(country.population) from country) -" +
+                "(select SUM(country.population) from country where country.name=?))/(select SUM(country.population) from country) * 100) as peoplenotliving";
+        String sql2 = "select((select SUM(country.population) as peopleliving from country where country.name=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
+        String sql3 = "select country.name from country where country.name=?";
+
+
+        PreparedStatement pstmt = con.prepareStatement(sql1);
+        PreparedStatement pstmt1 = con.prepareStatement(sql2);
+        PreparedStatement pstmt2 = con.prepareStatement(sql3);
+
+
+        pstmt.setString(1, country);
+        ArrayList<Country> population7 = new ArrayList<Country>();
+        ResultSet rset = pstmt.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset.next()) {
+            Country c = new Country();
+            c.setCode(rset.getString(1));
+            c.setPeoplenotliving(rset.getFloat("peoplenotliving"));
+
+            population7.add(c);
+
+
+
+        }
+
+        ArrayList<Country> population8 = new ArrayList<Country>();
+        pstmt1.setString(1,country);
+        ResultSet rset1 = pstmt1.executeQuery();
+        while (rset1.next()) {
+            Country co = new Country();
+            co.setCode(rset1.getString(1));
+            co.setPeopleliving(rset1.getFloat("peopleliving"));
+
+
+
+            population8.add(co);
+
+        }
+        ArrayList<Country> population10 = new ArrayList<Country>();
+        pstmt2.setString(1,country);
+        ResultSet rset2 = pstmt2.executeQuery();
+        while (rset2.next()) {
+            Country co = new Country();
+            co.setCode(rset2.getString(1));
+//            co.setPeopleliving(rset1.getFloat("peopleliving"));
+            co.setConame(rset2.getString("country.name"));
+
+
+            population10.add(co);
+
+        }
+        for(int i=0; i<population7.size();i++)
+        {
+            System.out.println("People Not Living in cities"+" "+population7.get(i).getPeoplenotliving()+"%");
+            for(int j=0; j<population8.size();j++)
+            {
+                System.out.println("People Living in cities"+" "+population8.get(j).getPeopleliving()+"%"+"\n"+"Country Name"+" "+population10.get(j).getConame());
+            }
+        }
+
+
+
+    }
 
     //display function for country branch
     public void displaycountry(ArrayList<Country> countryreport) {
@@ -837,6 +1060,31 @@ public class App {
             }
         }
     }
+
+//    public void displaypopulation7(ArrayList<Country> peoplelivingincontinent) {
+//        if (peoplelivingincontinent == null) {
+//            System.out.println("No null values in Population data");
+//            return;
+//        } else if (peoplelivingincontinent.size() == 0)
+//            System.out.println("There is no total population in the Region");
+//        else {
+//
+//            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+//            System.out.printf(String.format("%-16s %-16s %-16s", "People Living In Cities ","Continent", "People Not Living In Cities "));
+//            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+//            // Loop over all cities in the list
+//            for (Country c : peoplelivingincontinent) {
+//                if (c == null)
+//                    continue;
+//                String population_string =
+//                        String.format("%-16s %-16s %-16s",
+//                                c.getPeopleliving(),c.getContinent(),c.getPeoplenotliving());
+//                System.out.printf(population_string);
+//                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
+//            }
+//        }
+//    }
+
 
 
 }
