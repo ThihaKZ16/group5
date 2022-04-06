@@ -57,6 +57,10 @@ public class App {
         System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
         a.getpeoplelivingornotlivinginthecitiesineachcountry("Japan");
 
+        System.out.println("Finally, the organisation has asked if it is possible to provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population:\n" +
+                "Chinese,English,Hindi,Spanish,Arabic");
+        a.getthelangaugeofworldpopulation();
+
 
 
 
@@ -853,7 +857,7 @@ public class App {
         while (rset2.next()) {
             Country co = new Country();
             co.setCode(rset2.getString(1));
-//            co.setPeopleliving(rset1.getFloat("peopleliving"));
+
             co.setConame(rset2.getString("country.name"));
 
 
@@ -865,9 +869,389 @@ public class App {
             System.out.println("People Not Living in cities"+" "+population7.get(i).getPeoplenotliving()+"%");
             for(int j=0; j<population8.size();j++)
             {
-                System.out.println("People Living in cities"+" "+population8.get(j).getPeopleliving()+"%"+"\n"+"Country Name"+" "+population10.get(j).getConame());
+                System.out.println("People Living in cities"+" "+population8.get(j).getPeopleliving()+"%"+"\n"+"Country"+" "+population10.get(j).getConame());
             }
         }
+
+
+
+    }
+
+
+
+    public void getthelangaugeofworldpopulation() throws SQLException {
+
+            String sqleng1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'English'";
+            String sqleng2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Englishlanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='English'";
+            String sqleng3 = "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Englishlanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldenglishtotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='English'";
+            String sqleng4 = "select (SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Englishpopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='English'";
+
+            String sqlchn1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Chinese'";
+            String sqlchn2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Chinalanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Chinese'";
+            String sqlchn3 = "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Chinalanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldChinatotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Chinese'";
+            String sqlchn4 = "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Chinapopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Chinese'";
+
+            String sqlhindi1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Hindi'";
+            String sqlhindi2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Hindilanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Hindi'";
+            String sqlhindi3 = "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Hindilanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldHinditotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Hindi'";
+            String sqlhindi4 = "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Hindipopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Hindi'";
+
+            String sqlSpanish1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Spanish'";
+            String sqlSpanish2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Spanishlanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Spanish'";
+            String sqlSpanish3= "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Spanishlanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldSpanishtotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Spanish'";
+            String sqlSpanish4= "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Spanishpopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Spanish'";
+
+            String sqlArabic1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Arabic'";
+            String sqlArabic2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Arabiclanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Arabic'";
+            String sqlArabic3= "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Arabiclanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldArabictotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Arabic'";
+            String sqlArabic4 = "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Arabicpopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Arabic'";
+
+            PreparedStatement pstmt = con.prepareStatement(sqleng1);
+            PreparedStatement pstmt1 = con.prepareStatement(sqleng2);
+            PreparedStatement pstmt2 = con.prepareStatement(sqleng3);
+            PreparedStatement pstmt3 = con.prepareStatement(sqleng4);
+
+            PreparedStatement pstmt4 = con.prepareStatement(sqlchn1);
+            PreparedStatement pstmt5 = con.prepareStatement(sqlchn2);
+            PreparedStatement pstmt6 = con.prepareStatement(sqlchn3);
+            PreparedStatement pstmt7 = con.prepareStatement(sqlchn4);
+
+            PreparedStatement pstmt8 = con.prepareStatement(sqlArabic1);
+            PreparedStatement pstmt9 = con.prepareStatement(sqlArabic2);
+            PreparedStatement pstmt10 = con.prepareStatement(sqlArabic3);
+            PreparedStatement pstmt11 = con.prepareStatement(sqlArabic4);
+
+            PreparedStatement pstmt12 = con.prepareStatement(sqlSpanish1);
+            PreparedStatement pstmt13 = con.prepareStatement(sqlSpanish2);
+            PreparedStatement pstmt14 = con.prepareStatement(sqlSpanish3);
+            PreparedStatement pstmt15 = con.prepareStatement(sqlSpanish4);
+
+            PreparedStatement pstmt16 = con.prepareStatement(sqlhindi1);
+            PreparedStatement pstmt17 = con.prepareStatement(sqlhindi2);
+            PreparedStatement pstmt18 = con.prepareStatement(sqlhindi3);
+            PreparedStatement pstmt19 = con.prepareStatement(sqlhindi4);
+
+            /*English Language Code*/
+            ArrayList<CountryLanguage> population21 = new ArrayList<CountryLanguage>();
+            ResultSet rset = pstmt.executeQuery();
+
+
+            //String code, String name, String continent, String region, String capital-name, float population
+            while (rset.next()) {
+                CountryLanguage cl = new CountryLanguage();
+                cl.setCode(rset.getString(1));
+                cl.setConame(rset.getString("country.name"));
+                cl.setLanguage(rset.getString("countrylanguage.language"));
+                cl.setPercentage(rset.getFloat("countrylanguage.percentage"));
+
+                population21.add(cl);
+            }
+
+            ArrayList<CountryLanguage> population22 = new ArrayList<CountryLanguage>();
+
+            ResultSet rset1 = pstmt1.executeQuery();
+            while (rset1.next()) {
+                CountryLanguage cl = new CountryLanguage();
+                cl.setCode(rset1.getString(1));
+                cl.setPopulation(rset1.getFloat("Englishlanguagepopulation"));
+
+                population22.add(cl);
+
+            }
+            ArrayList<CountryLanguage> population23 = new ArrayList<CountryLanguage>();
+
+            ResultSet rset2 = pstmt2.executeQuery();
+            while (rset2.next()) {
+                CountryLanguage cl = new CountryLanguage();
+                cl.setCode(rset2.getString(1));
+                cl.setTotalpopulation(rset2.getFloat("worldenglishtotalpopulation"));
+
+
+                population23.add(cl);
+
+            }
+
+        ArrayList<CountryLanguage> population24 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset3 = pstmt3.executeQuery();
+        while (rset3.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset3.getString(1));
+            cl.setNoperengtotalpopulation(rset3.getFloat("Englishpopulation"));
+
+
+            population24.add(cl);
+
+        }
+        /*China Language Code*/
+
+        ArrayList<CountryLanguage> population31 = new ArrayList<CountryLanguage>();
+        ResultSet rset4 = pstmt4.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset4.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset4.getString(1));
+            cl.setConame(rset4.getString("country.name"));
+            cl.setLanguage(rset4.getString("countrylanguage.language"));
+            cl.setPercentage(rset4.getFloat("countrylanguage.percentage"));
+
+            population31.add(cl);
+        }
+
+        ArrayList<CountryLanguage> population32 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset5 = pstmt5.executeQuery();
+        while (rset5.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset5.getString(1));
+            cl.setPopulation(rset5.getFloat("Chinalanguagepopulation"));
+
+            population32.add(cl);
+
+        }
+        ArrayList<CountryLanguage> population33 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset6 = pstmt6.executeQuery();
+        while (rset6.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset6.getString(1));
+            cl.setChinesetotalpopulation(rset6.getFloat("worldchinatotalpopulation"));
+
+
+            population33.add(cl);
+
+        }
+
+        ArrayList<CountryLanguage> population34 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset7 = pstmt7.executeQuery();
+        while (rset7.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset7.getString(1));
+            cl.setNoperchinatotalpopulation(rset7.getFloat("Chinapopulation"));
+
+
+            population34.add(cl);
+
+        }
+                 /*Arabic Language Code*/
+        ArrayList<CountryLanguage> population41 = new ArrayList<CountryLanguage>();
+        ResultSet rset8 = pstmt8.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset8.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset8.getString(1));
+            cl.setConame(rset8.getString("country.name"));
+            cl.setLanguage(rset8.getString("countrylanguage.language"));
+            cl.setPercentage(rset8.getFloat("countrylanguage.percentage"));
+
+            population41.add(cl);
+        }
+
+        ArrayList<CountryLanguage> population42 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset9 = pstmt9.executeQuery();
+        while (rset1.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset9.getString(1));
+            cl.setArapopulation(rset9.getFloat("Arabiclanguagepopulation"));
+
+            population42.add(cl);
+
+        }
+        ArrayList<CountryLanguage> population43 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset10 = pstmt10.executeQuery();
+        while (rset10.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset10.getString(1));
+            cl.setArabictotalpopulation(rset10.getFloat("worldArabictotalpopulation"));
+
+
+            population43.add(cl);
+
+        }
+
+        ArrayList<CountryLanguage> population44 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset11 = pstmt11.executeQuery();
+        while (rset11.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset11.getString(1));
+            cl.setNoperarabictotalpopulation(rset11.getFloat("Arabicpopulation"));
+
+
+            population44.add(cl);
+
+        }
+                /*Spanish Language Code*/
+        ArrayList<CountryLanguage> population51 = new ArrayList<CountryLanguage>();
+        ResultSet rset12 = pstmt12.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset12.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset12.getString(1));
+            cl.setConame(rset12.getString("country.name"));
+            cl.setLanguage(rset12.getString("countrylanguage.language"));
+            cl.setPercentage(rset12.getFloat("countrylanguage.percentage"));
+
+            population51.add(cl);
+        }
+
+        ArrayList<CountryLanguage> population52 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset13 = pstmt13.executeQuery();
+        while (rset13.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset13.getString(1));
+            cl.setSpanpopulation(rset13.getFloat("Spanishlanguagepopulation"));
+
+            population52.add(cl);
+
+        }
+        ArrayList<CountryLanguage> population53 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset14 = pstmt14.executeQuery();
+        while (rset14.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset14.getString(1));
+            cl.setSpanishtotalpopulation(rset14.getFloat("worldSpanishtotalpopulation"));
+
+
+            population53.add(cl);
+
+        }
+
+        ArrayList<CountryLanguage> population54 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset15 = pstmt15.executeQuery();
+        while (rset15.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset15.getString(1));
+            cl.setNoperspanishtotalpopulation(rset15.getFloat("Spanishpopulation"));
+
+
+            population54.add(cl);
+
+        }
+            /*Hindi Language Code*/
+        ArrayList<CountryLanguage> population61 = new ArrayList<CountryLanguage>();
+        ResultSet rset16 = pstmt16.executeQuery();
+
+
+        //String code, String name, String continent, String region, String capital-name, float population
+        while (rset16.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset16.getString(1));
+            cl.setConame(rset16.getString("country.name"));
+            cl.setLanguage(rset16.getString("countrylanguage.language"));
+            cl.setPercentage(rset16.getFloat("countrylanguage.percentage"));
+
+            population61.add(cl);
+        }
+
+        ArrayList<CountryLanguage> population62 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset17 = pstmt17.executeQuery();
+        while (rset17.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset17.getString(1));
+            cl.setHinpopulation(rset17.getFloat("Hindilanguagepopulation"));
+
+            population62.add(cl);
+
+        }
+        ArrayList<CountryLanguage> population63 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset18 = pstmt18.executeQuery();
+        while (rset18.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset18.getString(1));
+            cl.setHinditotalpopulation(rset18.getFloat("worldHinditotalpopulation"));
+
+
+            population63.add(cl);
+
+        }
+
+        ArrayList<CountryLanguage> population64 = new ArrayList<CountryLanguage>();
+
+        ResultSet rset19 = pstmt19.executeQuery();
+        while (rset19.next()) {
+            CountryLanguage cl = new CountryLanguage();
+            cl.setCode(rset19.getString(1));
+            cl.setNoperhinditotalpopulation(rset19.getFloat("Hindipopulation"));
+
+
+            population64.add(cl);
+
+        }
+
+
+
+                for (int j = 0; j < population33.size(); j++) {
+                    System.out.println("-------------------------------------------------------------------------------------------------------------------");
+                    System.out.println("Language"+" "+"Total-Population-Percentage"+" "+ "Total-Population" );
+                    System.out.println("-------------------------------------------------------------------------------------------------------------------");
+                    System.out.println("China" + "      " + population33.get(j).getChinesetotalpopulation() +"%"+"          "+population34.get(j).getNoperchinatotalpopulation());
+                    for (int k = 0; k < population63.size(); k++) {
+                        System.out.println("Hindi" + "      " + population63.get(k).getHinditotalpopulation() +"%"+"          "+population64.get(k).getNoperhinditotalpopulation());
+
+                        for (int l = 0; l < population53.size(); l++) {
+                            System.out.println("Spanish" + "      " + population53.get(l).getSpanishtotalpopulation() +"%"+"          "+population54.get(l).getNoperspanishtotalpopulation());
+                            for (int m = 0; m < population23.size(); m++) {
+                                System.out.println("English" + "      " + population23.get(m).getTotalpopulation() +"%"+"          "+population24.get(m).getNoperengtotalpopulation());
+                                for (int n = 0; n < population43.size(); n++) {
+                                    System.out.println("Arabic" + "      " + population43.get(n).getArabictotalpopulation() +"%"+"          "+population44.get(n).getNoperarabictotalpopulation());
+
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+
+
+//            for (int i = 0; i < population31.size(); i++) {
+//                System.out.println("Country Name" + " " + population31.get(i).getConame()+ "\n " + " " + "Country Language" + " " +population31.get(i).getLanguage()+ "\n "+" "+"Country Language Percentage" +population31.get(i).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population32.get(i).getChnpopulation()+"\n");
+//
+//                for (int j = 0; j < population33.size(); j++) {
+//                    System.out.println("Total Population of China" + " " + population33.get(j).getChinesetotalpopulation() +"%"+" "+population34.get(j).getNoperchinatotalpopulation());
+//                }
+//            }
+
+//            for (int k = 0; k < population41.size(); k++) {
+//                System.out.println("Country Name" + " " + population41.get(k).getConame()+ "\n " + " " + "Country Language" + " " +population41.get(k).getLanguage()+ "\n "+" "+"Country Language Percentage" +population41.get(k).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population42.get(k).getArapopulation()+"\n");
+//
+//                for (int j = 0; j < population43.size(); j++) {
+//                    System.out.println("Total Population of Arabic" + " " + population43.get(j).getArabictotalpopulation() +"%"+" "+population44.get(j).getNoperarabictotalpopulation());
+//                }
+//             }
+
+//            for (int i = 0; i < population51.size(); i++) {
+//                System.out.println("Country Name" + " " + population51.get(i).getConame()+ "\n " + " " + "Country Language" + " " +population51.get(i).getLanguage()+ "\n "+" "+"Country Language Percentage" +population51.get(i).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population52.get(i).getSpanpopulation()+"\n");
+//
+//                for (int j = 0; j < population53.size(); j++) {
+//                    System.out.println("Total Population of Spanish" + " " + population53.get(j).getSpanishtotalpopulation() +"%"+" "+population54.get(j).getNoperspanishtotalpopulation());
+//                }
+//            }
+//
+//            for (int i = 0; i < population61.size(); i++) {
+//                System.out.println("Country Name" + " " + population61.get(i).getConame()+ "\n " + " " + "Country Language" + " " +population61.get(i).getLanguage()+ "\n "+" "+"Country Language Percentage" +population61.get(i).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population62.get(i).getHinpopulation()+"\n");
+//
+//                for (int j = 0; j < population33.size(); j++) {
+//                    System.out.println("Total Population of Hindi" + " " + population63.get(j).getHinditotalpopulation() +"%"+" "+population64.get(j).getNoperhinditotalpopulation());
+//                }
+//            }
 
 
 
