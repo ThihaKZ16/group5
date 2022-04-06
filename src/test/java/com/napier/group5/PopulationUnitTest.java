@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 //Create public class for population unit testing
-public class PopulationUnitTesting
+public class PopulationUnitTest
 {
     static App app;
 

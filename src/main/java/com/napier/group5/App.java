@@ -1,6 +1,5 @@
 package com.napier.group5;
 
-import javax.management.Query;
 import java.sql.*;
 import java.util.ArrayList;
 
