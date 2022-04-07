@@ -212,6 +212,7 @@ public class App {
     //Extract all populated countries on the world
     public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
         String sql = "select country.code, country.name, country.continent, country.region, city.name, country.population from country,city where country.capital = city.id order by country.population desc";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> countries = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery(sql);
@@ -231,6 +232,7 @@ public class App {
     //Extract populated countries from a continent
     public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
         String sql = "select country.code, country.name, country.continent, country.region, city.name, country.population from country, city where country.capital = city.id AND country.continent=? order by country.population desc";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> countries1 = new ArrayList<Country>();
@@ -256,6 +258,7 @@ public class App {
     //Extract populated countries from a region
     public ArrayList<Country> getCountryPopbyRegion(String contn) throws SQLException {
         String sql = "select country.code,country.name,country.continent,country.region,city.name,country.population from country,city where country.capital = city.id AND country.region=? order by country.population desc";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> countries2 = new ArrayList<Country>();
@@ -279,6 +282,7 @@ public class App {
     //Extract top populated countries on the world
     public ArrayList<Country> gettopCountryPopLargesttoSmallest(Integer count) throws SQLException {
         String sql = "select country.code, country.name, country.continent, country.region, city.name, country.population from country,city where country.capital = city.id order by country.population desc LIMIT ?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setInt(1, count);
         ArrayList<Country> countries3 = new ArrayList<Country>();
@@ -301,6 +305,7 @@ public class App {
     //Extract top populated countries from a continent
     public ArrayList<Country> gettopCountryPopbyContinent(String contn, Integer continent) throws SQLException {
         String sql = "select country.code, country.name, country.continent, country.region, city.name, country.population from country, city where country.capital = city.id AND country.continent=? order by country.population desc LIMIT ?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         pstmt.setInt(2, continent);
@@ -324,6 +329,7 @@ public class App {
     //Extract top populated countries from a region
     public ArrayList<Country> gettopCountryPopbyRegion(String region, Integer reg) throws SQLException {
         String sql = "select country.code,country.name,country.continent,country.region,city.name,country.population from country,city where country.capital = city.id AND country.region=? order by country.population desc LIMIT ?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, region);
         pstmt.setInt(2, reg);
@@ -347,6 +353,7 @@ public class App {
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql =
                 "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
@@ -369,6 +376,7 @@ public class App {
 
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest(String countrycontinent) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.continent= ? ORDER BY city.Population DESC";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countrycontinent);
         ArrayList<City> cities1 = new ArrayList<City>();
@@ -391,6 +399,7 @@ public class App {
     }
     public ArrayList<City> getcitiesintheregionLargesttoSmallest(String countryregion) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.region= ? ORDER BY city.Population DESC";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryregion);
         ArrayList<City> cities2 = new ArrayList<City>();
@@ -414,6 +423,7 @@ public class App {
     //Extract the output of all the cities in a country organised by largest population to smallest.
     public ArrayList<City> getcitiesinthecountryLargesttoSmallest(String countryname) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE country.code=city.countrycode AND country.name = ? ORDER BY city.Population DESC";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryname);
         ArrayList<City> cities3 = new ArrayList<City>();
@@ -438,6 +448,7 @@ public class App {
     //Extract the output of all the cities in a district organised by largest population to smallest.
     public ArrayList<City> getcitiesinthedistrictLargesttoSmallest(String citydistrict) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND city.district= ? ORDER BY city.Population DESC";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,citydistrict);
         ArrayList<City> cities4 = new ArrayList<City>();
@@ -461,6 +472,7 @@ public class App {
   
     public ArrayList<City> getTOPNumberofPopulatedCitiesinWorld(Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code ORDER BY city.Population DESC LIMIT ? ";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setInt(1,number);
         ArrayList<City> cities5= new ArrayList<City>();
@@ -483,6 +495,7 @@ public class App {
     }
     public ArrayList<City> getTOPNumberofpopulatedCitieswithcontinent(String countrycontinent,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.continent = ? ORDER BY city.Population DESC LIMIT ? ";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countrycontinent);
         pstmt.setInt(2,number);
@@ -506,6 +519,7 @@ public class App {
     }
      public ArrayList<City> getTOPNumberofpopulatedCitieswithregion(String countryregion,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.region = ? ORDER BY city.Population DESC LIMIT ? ";
+         /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryregion);
         pstmt.setInt(2,number);
@@ -530,6 +544,7 @@ public class App {
     }
     public ArrayList<City> getTOPNumberofpopulatedCitieswithcountry(String countryname,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND country.name = ? ORDER BY city.Population DESC LIMIT ? ";
+        /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryname);
         pstmt.setInt(2,number);
@@ -553,6 +568,7 @@ public class App {
     }
      public ArrayList<City> getTOPNumberofpopulatedCitieswithdistrict(String citydistrict,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND city.district = ? ORDER BY city.Population DESC LIMIT ? ";
+         /*prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,citydistrict);
         pstmt.setInt(2,number);
@@ -578,6 +594,7 @@ public class App {
     //Extract all populated capital cities on the world
     public ArrayList<Country> getCapitalPopLargesttoSmallestintheworld() throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id order by city.population desc";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> capital = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery();
@@ -598,6 +615,7 @@ public class App {
 
     public ArrayList<Country> getCapitalPopLargesttoSmallestinacontinent(String capitalcontinent) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.continent = ? order by city.population desc";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, capitalcontinent);
         ArrayList<Country> capital1 = new ArrayList<Country>();
@@ -619,6 +637,7 @@ public class App {
 
     public ArrayList<Country> gettopNpopulatedcapitalcity(String capitalcontinent, Integer number) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.continent = ? order by city.population desc LIMIT ?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, capitalcontinent);
         pstmt.setInt(2, number);
@@ -641,6 +660,7 @@ public class App {
 
     public ArrayList<Country> getCapitalPopLargesttoSmallestinaRegion(String region) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.region = ? order by city.population desc";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, region);
         ArrayList<Country> capital3 = new ArrayList<Country>();
@@ -662,6 +682,7 @@ public class App {
 
     public ArrayList<Country> gettopNpopulatedcapitalcityintheworld(Integer worldtopnumber) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id order by city.population desc LIMIT ?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setInt(1, worldtopnumber);
         ArrayList<Country> capital4 = new ArrayList<Country>();
@@ -683,6 +704,7 @@ public class App {
 
     public ArrayList<Country> gettopNpopulatedcapitalcityinaRegion(String region, Integer regiontopnumber) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.region = ? order by city.population desc LIMIT ?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, region);
         pstmt.setInt(2, regiontopnumber);
@@ -704,6 +726,7 @@ public class App {
     }
     public ArrayList<Country> gettotalpopulationintheworld() throws SQLException {
         String sql = "select SUM(country.population) AS worldtotal from country";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> population1 = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery();
@@ -742,6 +765,7 @@ public class App {
     }
     public ArrayList<Country> gettotalpopulationintheregion(String contn) throws SQLException {
         String sql = "select region, SUM(country.population) AS totalregion from country where country.region=?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> population3 = new ArrayList<Country>();
@@ -762,6 +786,7 @@ public class App {
     }
     public ArrayList<Country> gettotalpopulationinthecountry(String contn) throws SQLException {
         String sql = "select name, population from country where country.name=?";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> population4 = new ArrayList<Country>();
@@ -783,6 +808,7 @@ public class App {
 
     public ArrayList<City> gettotalpopulationinthedistrict(String contn) throws SQLException {
         String sql = "select district, SUM(city.population) AS totaldistrict from city where city.district=? GROUP BY city.countrycode";
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<City> population5 = new ArrayList<City>();
@@ -829,7 +855,7 @@ public class App {
        String sql2 = "select((select SUM(country.population) as peopleliving from country where country.continent=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
        String sql3 = "select country.continent from country where country.continent=?";
 
-
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql1);
         PreparedStatement pstmt1 = con.prepareStatement(sql2);
         PreparedStatement pstmt2 = con.prepareStatement(sql3);
@@ -899,7 +925,7 @@ public class App {
         String sql2 = "select((select SUM(country.population) as peopleliving from country where country.region=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
         String sql3 = "select country.region from country where country.region=?";
 
-
+        /*prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql1);
         PreparedStatement pstmt1 = con.prepareStatement(sql2);
         PreparedStatement pstmt2 = con.prepareStatement(sql3);
