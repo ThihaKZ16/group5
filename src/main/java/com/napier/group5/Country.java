@@ -15,6 +15,25 @@ public class Country {
     public String region;
     public String capital;
     public float population;
+
+    public float getPeopleliving() {
+        return peopleliving;
+    }
+
+    public void setPeopleliving(float peopleliving) {
+        this.peopleliving = peopleliving;
+    }
+
+    public float getPeoplenotliving() {
+        return peoplenotliving;
+    }
+
+    public void setPeoplenotliving(float peoplenotliving) {
+        this.peoplenotliving = peoplenotliving;
+    }
+
+    public float peopleliving;
+    public float peoplenotliving;
     public String name;
 
 
