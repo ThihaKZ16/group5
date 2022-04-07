@@ -22,7 +22,6 @@ jobs:
         run: mvn -Dtest=com.napier.group5.Countries test
 
 
-
   IntegrationTests:
     name: Integration Tests
     runs-on: ubuntu-20.04
