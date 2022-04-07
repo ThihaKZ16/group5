@@ -42,13 +42,13 @@ public class cities
     {
         ArrayList<City> cities = new ArrayList<City>();
         City ci = new City();
-        ci.name= "Seoul";
-        ci.countrycode= "KOR" ;
-        ci.district = "Seoul";
-        ci.population= 9981619;
-        ci.continent ="Asia";
-        ci.region = "Eastern Asia";
-        ci.coname= "South Korea";
+        ci.setName("Seoul");
+        ci.setCountryCode("KOR");
+        ci.setDistrict("Seoul");
+        ci.setPopulation(9981619);
+        ci.setContinent("Asia");
+        ci.setRegion("Eastern Asia");
+        ci.setConame("South Korea");
 
         cities.add(ci);
         app.display(cities);

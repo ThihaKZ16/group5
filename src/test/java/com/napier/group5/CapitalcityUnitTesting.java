@@ -42,12 +42,12 @@ public class CapitalcityUnitTesting
     {
         ArrayList<Country> capitalreport = new ArrayList<Country>();
         Country cap = new Country();
-        cap.code = "2413";
-        cap.coname= "Cuba";
-        cap.continent = "North America";
-        cap.region = "Caribbean";
-        cap.name = "La Habana";
-        cap.population = 2256000;
+        cap.setCode("2413");
+        cap.setConame("Cuba");
+        cap.setContinent("North America");
+        cap.setRegion( "Caribbean");
+        cap.setName("La Habana");
+        cap.setPopulation( 2256000);
 
         capitalreport.add(cap);
         app.displaycapital(capitalreport);
