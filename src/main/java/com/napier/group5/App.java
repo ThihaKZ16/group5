@@ -23,9 +23,9 @@ public class App {
 
 
         //Generate country reports
-        System.out.println("\n All the countries in the world organised by largest population to smallest.");
-        ArrayList<Country> countries = a.getCountryPopLargesttoSmallest();
-        a.displaycountry(countries);
+//        System.out.println("\n All the countries in the world organised by largest population to smallest.");
+//        ArrayList<Country> countries = a.getCountryPopLargesttoSmallest();
+//        a.displaycountry(countries);
 
         System.out.println("\n All the countries in a continent organised by largest population to smallest.");
         ArrayList<Country> countries1 = a.getCountryPopbyContinent("Asia");
