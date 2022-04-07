@@ -49,113 +49,113 @@ public class App {
 
 
         //Generate city reports
-        System.out.println("\n All the cities in the world organised by largest population to smallest.");
-        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
-        a.display(cities);
-
-        System.out.println("\n All the cities in a continent organised by largest population to smallest.");
-        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
-        a.display(cities1);
-
-        System.out.println("\n All the cities in a region organised by largest population to smallest..");
-        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
-        a.display(cities2);
-
-        System.out.println("\n All the cities in a country organised by largest population to smallest..");
-        ArrayList<City> cities3= a.getcitiesinthecountryLargesttoSmallest("Finland");
-        a.display(cities3);
-
-        System.out.println("\n All the cities in a district organised by largest population to smallest..");
-        ArrayList<City> cities4= a.getcitiesinthedistrictLargesttoSmallest("Dubai");
-        a.display(cities4);
-
-        System.out.println("\n The top N populated cities in the world where N is provided by the user.");
-        ArrayList<City> cities5= a.getTOPNumberofPopulatedCitiesinWorld(6);
-        a.display(cities5);
-
-        System.out.println("\n The top N populated cities in a continent where N is provided by the user.");
-        ArrayList<City> cities6= a.getTOPNumberofpopulatedCitieswithcontinent("Asia",7);
-        a.display(cities6);
-
-        System.out.println("\n The top N populated cities in a region where N is provided by the user.");
-        ArrayList<City> cities7= a.getTOPNumberofpopulatedCitieswithregion("Western Africa",8);
-        a.display(cities7);
-
-        System.out.println("\n The top N populated cities in a country where N is provided by the user.");
-        ArrayList<City> cities8= a.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
-        a.display(cities8);
-
-        System.out.println("\n The top N populated cities in a district where N is provided by the user.");
-        ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
-        a.display(cities9);
-
-
-        //Generate capital city reports
-        System.out.println("\n All the capital cities in the world organised by largest population to smallest.");
-        ArrayList<Country> capital = a.getCapitalPopLargesttoSmallestintheworld();
-        a.displaycapital(capital);
-
-        System.out.println("\n All the capital cities in a continent organised by largest population to smallest.");
-        ArrayList<Country> capital1 = a.getCapitalPopLargesttoSmallestinacontinent("Asia");
-        a.displaycapital(capital1);
-
-        System.out.println("\n The top N populated capital cities in a continent where N is provided by the user.");
-        ArrayList<Country> capital2 = a.gettopNpopulatedcapitalcity("Asia", 5);
-        a.displaycapital(capital2);
-
-        System.out.println("\n All the capital cities in a region organised by largest to smallest.");
-        ArrayList<Country> capital3 = a.getCapitalPopLargesttoSmallestinaRegion("Caribbean");
-        a.displaycapital(capital3);
-
-        System.out.println("\n The top N populated capital cities in the world where N is provided by the user.");
-        ArrayList<Country> capital4 = a.gettopNpopulatedcapitalcityintheworld(16);
-        a.displaycapital(capital4);
-
-        System.out.println("\n The top N populated capital cities in a region where N is provided by the user.");
-        ArrayList<Country> capital5 = a.gettopNpopulatedcapitalcityinaRegion("Caribbean", 10);
-        a.displaycapital(capital5);
-
-
-        //Generate total population in the world, a continent, a region, a country, a district, a city
-        System.out.println("\n Total population in the world");
-        ArrayList<Country> population1 = a.gettotalpopulationintheworld();
-        a.displaypopulation1(population1);
-
-        System.out.println("\n Total population in a continent");
-        ArrayList<Country> population2 = a.gettotalpopulationinthecontinent("Asia");
-        a.displaypopulation2(population2);
-
-        System.out.println("\n Total population in a region");
-        ArrayList<Country> population3 = a.gettotalpopulationintheregion("Micronesia");
-        a.displaypopulation3(population3);
-
-        System.out.println("\n Total population in a country");
-        ArrayList<Country> population4 = a.gettotalpopulationinthecountry("Japan");
-        a.displaypopulation4(population4);
-
-        System.out.println("\n Total population in a district");
-        ArrayList<City> population5 = a.gettotalpopulationinthedistrict("Zuid-Holland");
-        a.displaypopulation5(population5);
-
-        System.out.println("\n Total population in a city");
-        ArrayList<City> population6 = a.gettotalpopulationinthecity("Rangoon (Yangon)");
-        a.displaypopulation6(population6);
-
-
-        //Generate population report by people living in cities and people not living in cities
-        System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
-        a.getpeoplelivingornotlivinginthecitiesineachcontinent("Asia");
-
-        System.out.println("The population of people, people living in cities, and people not living in cities in each region.");
-        a.getpeoplelivingornotlivinginthecitiesineachregion("Micronesia");
-
-        System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
-        a.getpeoplelivingornotlivinginthecitiesineachcountry("Japan");
-
-        //Generate population report by spoken language
-        System.out.println("Finally, the organisation has asked if it is possible to provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population:\n" +
-                "Chinese,English,Hindi,Spanish,Arabic");
-        a.getthelangaugeofworldpopulation();
+//        System.out.println("\n All the cities in the world organised by largest population to smallest.");
+//        ArrayList<City> cities= a.getcitiesintheworldLargesttoSmallest();
+//        a.display(cities);
+//
+//        System.out.println("\n All the cities in a continent organised by largest population to smallest.");
+//        ArrayList<City> cities1= a.getcitiesinthecontinentLargesttoSmallest("Europe");
+//        a.display(cities1);
+//
+//        System.out.println("\n All the cities in a region organised by largest population to smallest..");
+//        ArrayList<City> cities2= a.getcitiesintheregionLargesttoSmallest("Southeast Asia");
+//        a.display(cities2);
+//
+//        System.out.println("\n All the cities in a country organised by largest population to smallest..");
+//        ArrayList<City> cities3= a.getcitiesinthecountryLargesttoSmallest("Finland");
+//        a.display(cities3);
+//
+//        System.out.println("\n All the cities in a district organised by largest population to smallest..");
+//        ArrayList<City> cities4= a.getcitiesinthedistrictLargesttoSmallest("Dubai");
+//        a.display(cities4);
+//
+//        System.out.println("\n The top N populated cities in the world where N is provided by the user.");
+//        ArrayList<City> cities5= a.getTOPNumberofPopulatedCitiesinWorld(6);
+//        a.display(cities5);
+//
+//        System.out.println("\n The top N populated cities in a continent where N is provided by the user.");
+//        ArrayList<City> cities6= a.getTOPNumberofpopulatedCitieswithcontinent("Asia",7);
+//        a.display(cities6);
+//
+//        System.out.println("\n The top N populated cities in a region where N is provided by the user.");
+//        ArrayList<City> cities7= a.getTOPNumberofpopulatedCitieswithregion("Western Africa",8);
+//        a.display(cities7);
+//
+//        System.out.println("\n The top N populated cities in a country where N is provided by the user.");
+//        ArrayList<City> cities8= a.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
+//        a.display(cities8);
+//
+//        System.out.println("\n The top N populated cities in a district where N is provided by the user.");
+//        ArrayList<City> cities9= a.getTOPNumberofpopulatedCitieswithdistrict("California",4);
+//        a.display(cities9);
+//
+//
+//        //Generate capital city reports
+//        System.out.println("\n All the capital cities in the world organised by largest population to smallest.");
+//        ArrayList<Country> capital = a.getCapitalPopLargesttoSmallestintheworld();
+//        a.displaycapital(capital);
+//
+//        System.out.println("\n All the capital cities in a continent organised by largest population to smallest.");
+//        ArrayList<Country> capital1 = a.getCapitalPopLargesttoSmallestinacontinent("Asia");
+//        a.displaycapital(capital1);
+//
+//        System.out.println("\n The top N populated capital cities in a continent where N is provided by the user.");
+//        ArrayList<Country> capital2 = a.gettopNpopulatedcapitalcity("Asia", 5);
+//        a.displaycapital(capital2);
+//
+//        System.out.println("\n All the capital cities in a region organised by largest to smallest.");
+//        ArrayList<Country> capital3 = a.getCapitalPopLargesttoSmallestinaRegion("Caribbean");
+//        a.displaycapital(capital3);
+//
+//        System.out.println("\n The top N populated capital cities in the world where N is provided by the user.");
+//        ArrayList<Country> capital4 = a.gettopNpopulatedcapitalcityintheworld(16);
+//        a.displaycapital(capital4);
+//
+//        System.out.println("\n The top N populated capital cities in a region where N is provided by the user.");
+//        ArrayList<Country> capital5 = a.gettopNpopulatedcapitalcityinaRegion("Caribbean", 10);
+//        a.displaycapital(capital5);
+//
+//
+//        //Generate total population in the world, a continent, a region, a country, a district, a city
+//        System.out.println("\n Total population in the world");
+//        ArrayList<Country> population1 = a.gettotalpopulationintheworld();
+//        a.displaypopulation1(population1);
+//
+//        System.out.println("\n Total population in a continent");
+//        ArrayList<Country> population2 = a.gettotalpopulationinthecontinent("Asia");
+//        a.displaypopulation2(population2);
+//
+//        System.out.println("\n Total population in a region");
+//        ArrayList<Country> population3 = a.gettotalpopulationintheregion("Micronesia");
+//        a.displaypopulation3(population3);
+//
+//        System.out.println("\n Total population in a country");
+//        ArrayList<Country> population4 = a.gettotalpopulationinthecountry("Japan");
+//        a.displaypopulation4(population4);
+//
+//        System.out.println("\n Total population in a district");
+//        ArrayList<City> population5 = a.gettotalpopulationinthedistrict("Zuid-Holland");
+//        a.displaypopulation5(population5);
+//
+//        System.out.println("\n Total population in a city");
+//        ArrayList<City> population6 = a.gettotalpopulationinthecity("Rangoon (Yangon)");
+//        a.displaypopulation6(population6);
+//
+//
+//        //Generate population report by people living in cities and people not living in cities
+//        System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
+//        a.getpeoplelivingornotlivinginthecitiesineachcontinent("Asia");
+//
+//        System.out.println("The population of people, people living in cities, and people not living in cities in each region.");
+//        a.getpeoplelivingornotlivinginthecitiesineachregion("Micronesia");
+//
+//        System.out.println("The population of people, people living in cities, and people not living in cities in each country.");
+//        a.getpeoplelivingornotlivinginthecitiesineachcountry("Japan");
+//
+//        //Generate population report by spoken language
+//        System.out.println("Finally, the organisation has asked if it is possible to provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population:\n" +
+//                "Chinese,English,Hindi,Spanish,Arabic");
+//        a.getthelangaugeofworldpopulation();
 
         // Disconnect from database
         a.disconnect();
