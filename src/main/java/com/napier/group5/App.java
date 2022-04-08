@@ -10,6 +10,7 @@ public class App {
      */
     private Connection con = null;
 
+
     public static void main(String[] args) throws SQLException {
         /** Create new Application**/
         App a = new App();
@@ -342,7 +343,7 @@ public class App {
     /**Extract top populated countries from a region*/
     public ArrayList<Country> gettopCountryPopbyRegion(String region, Integer reg) throws SQLException {
         String sql = "select country.code,country.name,country.continent,country.region,city.name,country.population from country,city where country.capital = city.id AND country.region=? order by country.population desc LIMIT ?";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, region);
         pstmt.setInt(2, reg);
@@ -367,7 +368,7 @@ public class App {
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql =
                 "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
@@ -390,7 +391,7 @@ public class App {
 
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest(String countrycontinent) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.continent= ? ORDER BY city.Population DESC";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countrycontinent);
         ArrayList<City> cities1 = new ArrayList<City>();
@@ -413,7 +414,7 @@ public class App {
     }
     public ArrayList<City> getcitiesintheregionLargesttoSmallest(String countryregion) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.region= ? ORDER BY city.Population DESC";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryregion);
         ArrayList<City> cities2 = new ArrayList<City>();
@@ -434,15 +435,15 @@ public class App {
         }
         return cities2;
     }
-    //Extract the output of all the cities in a country organised by largest population to smallest.
+    /**Extract the output of all the cities in a country organised by largest population to smallest.*/
     public ArrayList<City> getcitiesinthecountryLargesttoSmallest(String countryname) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE country.code=city.countrycode AND country.name = ? ORDER BY city.Population DESC";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,countryname);
         ArrayList<City> cities3 = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
-        //String name, String continent, String region, String capital, float population
+        /**String name, String continent, String region, String capital, float population*/
         while(rset.next())
         {
             City ci = new City();
@@ -459,15 +460,15 @@ public class App {
         return cities3;
     }
 
-    //Extract the output of all the cities in a district organised by largest population to smallest.
+    /**Extract the output of all the cities in a district organised by largest population to smallest.*/
     public ArrayList<City> getcitiesinthedistrictLargesttoSmallest(String citydistrict) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND city.district= ? ORDER BY city.Population DESC";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,citydistrict);
         ArrayList<City> cities4 = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
-        //String name, String continent, String region, String capital, float population
+        /**String name, String continent, String region, String capital, float population*/
         while(rset.next())
         {
             City ci = new City();
@@ -486,12 +487,12 @@ public class App {
   
     public ArrayList<City> getTOPNumberofPopulatedCitiesinWorld(Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code ORDER BY city.Population DESC LIMIT ? ";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setInt(1,number);
         ArrayList<City> cities5= new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
-        //String name, String continent, String region, String capital, float population
+        /**String name, String continent, String region, String capital, float population*/
         while(rset.next())
         {
             City ci = new City();
@@ -880,7 +881,7 @@ public class App {
        String sql2 = "select((select SUM(country.population) as peopleliving from country where country.continent=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
        String sql3 = "select country.continent from country where country.continent=?";
 
-        /**prepare statement*/
+        /**Prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql1);
         PreparedStatement pstmt1 = con.prepareStatement(sql2);
         PreparedStatement pstmt2 = con.prepareStatement(sql3);
@@ -1155,7 +1156,7 @@ public class App {
             PreparedStatement pstmt18 = con.prepareStatement(sqlhindi3);
             PreparedStatement pstmt19 = con.prepareStatement(sqlhindi4);
 
-            /*English Language Code*/
+                    /**English Language Code*/
             ArrayList<CountryLanguage> population21 = new ArrayList<CountryLanguage>();
             ResultSet rset = pstmt.executeQuery();
 
@@ -1209,7 +1210,7 @@ public class App {
             population24.add(cl);
 
         }
-        /*China Language Code*/
+                    /**China Language Code*/
         /**Extract the Chinese language population percentage**/
         ArrayList<CountryLanguage> population31 = new ArrayList<CountryLanguage>();
         ResultSet rset4 = pstmt4.executeQuery();
@@ -1263,7 +1264,7 @@ public class App {
             population34.add(cl);
 
         }
-                 /*Arabic Language Code*/
+                 /**Arabic Language Code*/
         /**Extract the Arabic language population percentage**/
         ArrayList<CountryLanguage> population41 = new ArrayList<CountryLanguage>();
         ResultSet rset8 = pstmt8.executeQuery();
@@ -1317,7 +1318,7 @@ public class App {
             population44.add(cl);
 
         }
-                /*Spanish Language Code*/
+                /**Spanish Language Code*/
         ArrayList<CountryLanguage> population51 = new ArrayList<CountryLanguage>();
         ResultSet rset12 = pstmt12.executeQuery();
 
@@ -1371,7 +1372,7 @@ public class App {
             population54.add(cl);
 
         }
-            /*Hindi Language Code*/
+            /**Hindi Language Code*/
         ArrayList<CountryLanguage> population61 = new ArrayList<CountryLanguage>();
         ResultSet rset16 = pstmt16.executeQuery();
 
@@ -1454,43 +1455,12 @@ public class App {
                 }
 
 
-//            for (int i = 0; i < population31.size(); i++) {
-//                System.out.println("Country Name" + " " + population31.get(i).getConame()+ "\n " + " " + "Country Language" + " " +population31.get(i).getLanguage()+ "\n "+" "+"Country Language Percentage" +population31.get(i).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population32.get(i).getChnpopulation()+"\n");
-//
-//                for (int j = 0; j < population33.size(); j++) {
-//                    System.out.println("Total Population of China" + " " + population33.get(j).getChinesetotalpopulation() +"%"+" "+population34.get(j).getNoperchinatotalpopulation());
-//                }
-//            }
-
-//            for (int k = 0; k < population41.size(); k++) {
-//                System.out.println("Country Name" + " " + population41.get(k).getConame()+ "\n " + " " + "Country Language" + " " +population41.get(k).getLanguage()+ "\n "+" "+"Country Language Percentage" +population41.get(k).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population42.get(k).getArapopulation()+"\n");
-//
-//                for (int j = 0; j < population43.size(); j++) {
-//                    System.out.println("Total Population of Arabic" + " " + population43.get(j).getArabictotalpopulation() +"%"+" "+population44.get(j).getNoperarabictotalpopulation());
-//                }
-//             }
-
-//            for (int i = 0; i < population51.size(); i++) {
-//                System.out.println("Country Name" + " " + population51.get(i).getConame()+ "\n " + " " + "Country Language" + " " +population51.get(i).getLanguage()+ "\n "+" "+"Country Language Percentage" +population51.get(i).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population52.get(i).getSpanpopulation()+"\n");
-//
-//                for (int j = 0; j < population53.size(); j++) {
-//                    System.out.println("Total Population of Spanish" + " " + population53.get(j).getSpanishtotalpopulation() +"%"+" "+population54.get(j).getNoperspanishtotalpopulation());
-//                }
-//            }
-//
-//            for (int i = 0; i < population61.size(); i++) {
-//                System.out.println("Country Name" + " " + population61.get(i).getConame()+ "\n " + " " + "Country Language" + " " +population61.get(i).getLanguage()+ "\n "+" "+"Country Language Percentage" +population61.get(i).getPercentage()+"%"+ "\n "+"Country Language Based Population"+ " " + population62.get(i).getHinpopulation()+"\n");
-//
-//                for (int j = 0; j < population33.size(); j++) {
-//                    System.out.println("Total Population of Hindi" + " " + population63.get(j).getHinditotalpopulation() +"%"+" "+population64.get(j).getNoperhinditotalpopulation());
-//                }
-//            }
 
 
 
     }
 
-    //display function for country branch
+    /**display function for country branch*/
     public void displaycountry(ArrayList<Country> countryreport) {
         if (countryreport == null) {
             System.out.println("No null values in country data");
@@ -1538,7 +1508,7 @@ public class App {
     }
 
     public void display(ArrayList<City> report) {
-        // Check city value is not null
+        /** Check city value is not null*/
         if (report == null) {
             System.out.println("No null values in city data");
             return;

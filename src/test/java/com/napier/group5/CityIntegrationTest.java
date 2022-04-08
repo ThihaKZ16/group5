@@ -1,3 +1,4 @@
+/**Declare package from com.napier.group5 for Integration Test*/
 package com.napier.group5;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -20,14 +21,7 @@ public class CityIntegrationTest
 
     }
 
-//    @Test
-//    void testGetEmployee()
-//    {
-//        Employee emp = app.getEmployee(255530);
-//        assertEquals(emp.emp_no, 255530);
-//        assertEquals(emp.first_name, "Ronghao");
-//        assertEquals(emp.last_name, "Garigliano");
-//    }
+
 
     @Test
     void getcitiesintheworld() throws SQLException {

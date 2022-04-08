@@ -1,4 +1,4 @@
-//Declare package from com.napier.group5 for Integration Test
+/**Declare package from com.napier.group5 for Integration Test*/
 package com.napier.group5;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//Create public class for population Integration Test
+/**Create public class for population Integration Test*/
 public class PopulationIntegrationTest
 {
     static App app;
@@ -22,7 +22,7 @@ public class PopulationIntegrationTest
 
     }
 
-    //Test for Total Population in the Continent
+    /**Test for Total Population in the Continent*/
     @Test
     void gettotalPopulationintheContinent() throws SQLException {
         ArrayList<Country> population2= app.gettotalpopulationinthecontinent("Asia");
@@ -37,7 +37,7 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the Region
+    /**Test for Population in the Region*/
     @Test
     void gettotalPopulationintheRegion() throws SQLException {
         ArrayList<Country> population3= app.gettotalpopulationintheregion("Micronesia   ");
@@ -79,7 +79,7 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the City
+    /**Test for Population in the City*/
     @Test
     void gettotalPopulationintheCity() throws SQLException {
         ArrayList<City> population6= app.gettotalpopulationinthecity("Rangoon (Yangon)");
