@@ -42,12 +42,12 @@ public class Countries
     {
         ArrayList<Country> countries = new ArrayList<Country>();
         Country c = new Country();
-        c.name= "Seoul";
-        c.code= "KOR" ;
-        c.continent ="Asia";
-        c.region = "Eastern Asia";
-        c.coname= "South Korea";
-        c.population= 9981619;
+        c.setName( "Seoul");
+        c.setCode("KOR");
+        c.setContinent("Asia");
+        c.setRegion("Eastern Asia");
+        c.setConame("South Korea");
+        c.setPopulation(9981619);
 
         countries.add(c);
         app.displaycountry(countries);
