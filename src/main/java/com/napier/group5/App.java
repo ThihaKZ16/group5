@@ -11,9 +11,9 @@ public class App {
     private Connection con = null;
 
     public static void main(String[] args) throws SQLException {
-        // Create new Application
+        /** Create new Application**/
         App a = new App();
-        // Connect to database
+        /** Connect to database **/
 
         if(args.length < 1){
             a.connect("localhost:33060", 30000);
@@ -738,32 +738,35 @@ public class App {
         }
         return capital5;
     }
+
+    /**Extract total population of the world*/
     public ArrayList<Country> gettotalpopulationintheworld() throws SQLException {
+        /**sql statement to Extract total population of the world*/
         String sql = "select SUM(country.population) AS worldtotal from country";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> population1 = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery();
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, float population*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
-            //c.setConame(rset.getString("country.name"));
-            //c.setContinent(rset.getString("country.continent"));
-            // c.setRegion(rset.getString("country.region"));
-         //   c.setName(rset.getString("city.name"));
+
             c.setPopulation(rset.getFloat("worldtotal"));
             population1.add(c);
         }
         return population1;
     }
+    /**Extract total population of the continent*/
     public ArrayList<Country> gettotalpopulationinthecontinent(String contn) throws SQLException {
+        /**sql statement to Extract total population of the continent**/
         String sql = "select continent, SUM(country.population) AS totalcontinent from country where country.continent=?";
+        /**Prepared Statement**/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> population2 = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery();
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, String name, String Continent, Float Population*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
@@ -777,14 +780,16 @@ public class App {
         }
         return population2;
     }
+    /** Extract total population of the region**/
     public ArrayList<Country> gettotalpopulationintheregion(String contn) throws SQLException {
+        /**sql statement to Extract total population of the region**/
         String sql = "select region, SUM(country.population) AS totalregion from country where country.region=?";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> population3 = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery();
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code,  String region, Float population*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
@@ -798,14 +803,16 @@ public class App {
         }
         return population3;
     }
+    /** Extract total population of the country**/
     public ArrayList<Country> gettotalpopulationinthecountry(String contn) throws SQLException {
+        /**sql statement to Extract total population of the country**/
         String sql = "select name, population from country where country.name=?";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<Country> population4 = new ArrayList<Country>();
         ResultSet rset = pstmt.executeQuery();
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, String name, Float population*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
@@ -819,18 +826,19 @@ public class App {
         }
         return population4;
     }
-
+    /**Extract total population of the district**/
     public ArrayList<City> gettotalpopulationinthedistrict(String contn) throws SQLException {
+        /**sql statement to Extract total population of the district**/
         String sql = "select district, SUM(city.population) AS totaldistrict from city where city.district=? GROUP BY city.countrycode";
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<City> population5 = new ArrayList<City>();
         ResultSet rset = pstmt.executeQuery();
-        //String code, String name, String continent, String region, String capital-name, float population
+        /** String District, float population,String countrycode*/
         while (rset.next()) {
             City ci = new City();
-           // ci.setName(rset.getString("city.name"));
+
 
             ci.setDistrict(rset.getString("city.district"));
             ci.setPopulation(rset.getFloat("totaldistrict"));
@@ -841,17 +849,20 @@ public class App {
         }
         return population5;
     }
+    /** Extract total population of the city**/
     public ArrayList<City> gettotalpopulationinthecity(String contn) throws SQLException {
+        /**sql statement to Extract total population of the city**/
         String sql = "select city.countrycode, city.name,sum(city.population) as citynametotal from city where city.name = ? GROUP BY city.countrycode";
+        /**Prepared statement**/
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<City> population6 = new ArrayList<City>();
         ResultSet rset = pstmt.executeQuery();
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String Countrycode, String name, float population*/
         while (rset.next()) {
             City ci = new City();
 
-          //  ci.setDistrict(rset.getString("city.district"));
+
             ci.setPopulation(rset.getFloat("citynametotal"));
             ci.setName(rset.getString("city.name"));
             ci.setCountryCode(rset.getString(1));
@@ -860,16 +871,16 @@ public class App {
         }
         return population6;
     }
-
+    /** Extract peoplelivingornotliving population of the continent**/
     public void getpeoplelivingornotlivinginthecitiesineachcontinent(String continent) throws SQLException {
-
+        /** Sql statments to extract peoplelivingornotliving population of the continent**/
         String sql1 = "select" +
                 "(((select SUM(country.population) from country) -" +
         "(select SUM(country.population) from country where country.continent=?))/(select SUM(country.population) from country) * 100) as peoplenotliving";
        String sql2 = "select((select SUM(country.population) as peopleliving from country where country.continent=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
        String sql3 = "select country.continent from country where country.continent=?";
 
-        /*prepare statement*/
+        /**prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql1);
         PreparedStatement pstmt1 = con.prepareStatement(sql2);
         PreparedStatement pstmt2 = con.prepareStatement(sql3);
@@ -880,7 +891,7 @@ public class App {
         ResultSet rset = pstmt.executeQuery();
 
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, Float peoplenotliving*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
@@ -891,10 +902,11 @@ public class App {
 
 
         }
-
+        /**Extract peoplelivingornotliving population of the continent**/
             ArrayList<Country> population8 = new ArrayList<Country>();
             pstmt1.setString(1,continent);
             ResultSet rset1 = pstmt1.executeQuery();
+        /**String code, Float peopleliving*/
             while (rset1.next()) {
                 Country co = new Country();
                 co.setCode(rset1.getString(1));
@@ -905,13 +917,15 @@ public class App {
                 population8.add(co);
 
             }
+        /**Extract peoplelivingornotliving population of the continent**/
         ArrayList<Country> population10 = new ArrayList<Country>();
         pstmt2.setString(1,continent);
         ResultSet rset2 = pstmt2.executeQuery();
+        /**String code, String continent*/
         while (rset2.next()) {
             Country co = new Country();
             co.setCode(rset2.getString(1));
-//            co.setPeopleliving(rset1.getFloat("peopleliving"));
+
             co.setContinent(rset2.getString("country.continent"));
 
 
@@ -931,15 +945,16 @@ public class App {
 
 
     }
+    /** Extract peoplelivingornotliving population of the region**/
     public void getpeoplelivingornotlivinginthecitiesineachregion(String region) throws SQLException {
-
+        /** Sql statments to extract peoplelivingornotliving population of the region**/
         String sql1 = "select" +
                 "(((select SUM(country.population) from country) -" +
                 "(select SUM(country.population) from country where country.region=?))/(select SUM(country.population) from country) * 100) as peoplenotliving";
         String sql2 = "select((select SUM(country.population) as peopleliving from country where country.region=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
         String sql3 = "select country.region from country where country.region=?";
 
-        /*prepare statement*/
+        /**Prepare statement*/
         PreparedStatement pstmt = con.prepareStatement(sql1);
         PreparedStatement pstmt1 = con.prepareStatement(sql2);
         PreparedStatement pstmt2 = con.prepareStatement(sql3);
@@ -950,7 +965,7 @@ public class App {
         ResultSet rset = pstmt.executeQuery();
 
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code,  float peoplenotliving*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
@@ -961,7 +976,7 @@ public class App {
 
 
         }
-
+        /** Extract peoplelivingornotliving population of the region**/
         ArrayList<Country> population8 = new ArrayList<Country>();
         pstmt1.setString(1,region);
         ResultSet rset1 = pstmt1.executeQuery();
@@ -975,6 +990,7 @@ public class App {
             population8.add(co);
 
         }
+        /** Extract peoplelivingornotliving population of the region**/
         ArrayList<Country> population10 = new ArrayList<Country>();
         pstmt2.setString(1,region);
         ResultSet rset2 = pstmt2.executeQuery();
@@ -1000,16 +1016,17 @@ public class App {
 
 
     }
+    /** extract peoplelivingornotliving population of the country**/
 
     public void getpeoplelivingornotlivinginthecitiesineachcountry(String country) throws SQLException {
-
+        /** sql statements to extract peoplelivingornotliving population of the country**/
         String sql1 = "select" +
                 "(((select SUM(country.population) from country) -" +
                 "(select SUM(country.population) from country where country.name=?))/(select SUM(country.population) from country) * 100) as peoplenotliving";
         String sql2 = "select((select SUM(country.population) as peopleliving from country where country.name=?)/(select SUM(country.population) from country) * 100) as peopleliving ";
         String sql3 = "select country.name from country where country.name=?";
 
-
+        /**prepared statement*/
         PreparedStatement pstmt = con.prepareStatement(sql1);
         PreparedStatement pstmt1 = con.prepareStatement(sql2);
         PreparedStatement pstmt2 = con.prepareStatement(sql3);
@@ -1020,7 +1037,7 @@ public class App {
         ResultSet rset = pstmt.executeQuery();
 
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code,  float peoplenotliving*/
         while (rset.next()) {
             Country c = new Country();
             c.setCode(rset.getString(1));
@@ -1031,7 +1048,7 @@ public class App {
 
 
         }
-
+        /** extract peoplelivingornotliving population of the country**/
         ArrayList<Country> population8 = new ArrayList<Country>();
         pstmt1.setString(1,country);
         ResultSet rset1 = pstmt1.executeQuery();
@@ -1045,6 +1062,7 @@ public class App {
             population8.add(co);
 
         }
+        /** extract peoplelivingornotliving population of the country**/
         ArrayList<Country> population10 = new ArrayList<Country>();
         pstmt2.setString(1,country);
         ResultSet rset2 = pstmt2.executeQuery();
@@ -1072,54 +1090,66 @@ public class App {
     }
 
 
-
+    /** Extract total population of the world with population percentage of English,Chinese,Arabic,Hindi and Spanish **/
     public void getthelangaugeofworldpopulation() throws SQLException {
+        /** Sql statements to Extract total population of the world with population percentage of English,Chinese,Arabic,Hindi and Spanish **/
 
+        /** Sql statements to Extract total population of the world with population percentage of English **/
             String sqleng1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'English'";
             String sqleng2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Englishlanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='English'";
             String sqleng3 = "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Englishlanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldenglishtotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='English'";
             String sqleng4 = "select (SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Englishpopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='English'";
 
+        /** Sql statements to Extract total population of the world with population percentage of Chinese **/
             String sqlchn1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Chinese'";
             String sqlchn2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Chinalanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Chinese'";
             String sqlchn3 = "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Chinalanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldChinatotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Chinese'";
             String sqlchn4 = "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Chinapopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Chinese'";
 
+            /** Sql statements to Extract total population of the world with population percentage of Hindi **/
             String sqlhindi1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Hindi'";
             String sqlhindi2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Hindilanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Hindi'";
             String sqlhindi3 = "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Hindilanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldHinditotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Hindi'";
             String sqlhindi4 = "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Hindipopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Hindi'";
 
+            /** Sql statements to Extract total population of the world with population percentage of Spanish **/
             String sqlSpanish1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Spanish'";
             String sqlSpanish2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Spanishlanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Spanish'";
             String sqlSpanish3= "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Spanishlanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldSpanishtotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Spanish'";
             String sqlSpanish4= "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Spanishpopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Spanish'";
 
+            /** Sql statements to Extract total population of the world with population percentage of Arabic **/
             String sqlArabic1 = "select country.name,countrylanguage.language,countrylanguage.percentage from countrylanguage,country where country.code = countrylanguage.countrycode AND countrylanguage.language = 'Arabic'";
             String sqlArabic2 = "select (((select country.population)*(select countrylanguage.percentage))/100) as Arabiclanguagepopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Arabic'";
             String sqlArabic3= "select (((select (select SUM((select (country.population)) * (select countrylanguage.percentage))/100) as Arabiclanguagepopulation) *100)/ (select SUM(country.population) from country)) as worldArabictotalpopulation  from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Arabic'";
             String sqlArabic4 = "select SUM((select (country.population)) * (select countrylanguage.percentage)) as Arabicpopulation from country,countrylanguage where country.code = countrylanguage.countrycode AND countrylanguage.language='Arabic'";
 
+            /** PreparedStatements statements to Extract total population of the world with population percentage of English **/
             PreparedStatement pstmt = con.prepareStatement(sqleng1);
             PreparedStatement pstmt1 = con.prepareStatement(sqleng2);
             PreparedStatement pstmt2 = con.prepareStatement(sqleng3);
             PreparedStatement pstmt3 = con.prepareStatement(sqleng4);
 
+            /** PreparedStatements statements to Extract total population of the world with population percentage of Chinese **/
             PreparedStatement pstmt4 = con.prepareStatement(sqlchn1);
             PreparedStatement pstmt5 = con.prepareStatement(sqlchn2);
             PreparedStatement pstmt6 = con.prepareStatement(sqlchn3);
             PreparedStatement pstmt7 = con.prepareStatement(sqlchn4);
 
+
+            /** PreparedStatements statements to Extract total population of the world with population percentage of Arabic **/
             PreparedStatement pstmt8 = con.prepareStatement(sqlArabic1);
             PreparedStatement pstmt9 = con.prepareStatement(sqlArabic2);
             PreparedStatement pstmt10 = con.prepareStatement(sqlArabic3);
             PreparedStatement pstmt11 = con.prepareStatement(sqlArabic4);
 
+            /** PreparedStatements statements to Extract total population of the world with population percentage of Spanish **/
             PreparedStatement pstmt12 = con.prepareStatement(sqlSpanish1);
             PreparedStatement pstmt13 = con.prepareStatement(sqlSpanish2);
             PreparedStatement pstmt14 = con.prepareStatement(sqlSpanish3);
             PreparedStatement pstmt15 = con.prepareStatement(sqlSpanish4);
 
+            /** PreparedStatements statements to Extract total population of the world with population percentage of Hindi **/
             PreparedStatement pstmt16 = con.prepareStatement(sqlhindi1);
             PreparedStatement pstmt17 = con.prepareStatement(sqlhindi2);
             PreparedStatement pstmt18 = con.prepareStatement(sqlhindi3);
@@ -1130,7 +1160,7 @@ public class App {
             ResultSet rset = pstmt.executeQuery();
 
 
-            //String code, String name, String continent, String region, String capital-name, float population
+            /**String code, String countryname, String language,  Float percentage*/
             while (rset.next()) {
                 CountryLanguage cl = new CountryLanguage();
                 cl.setCode(rset.getString(1));
@@ -1140,7 +1170,7 @@ public class App {
 
                 population21.add(cl);
             }
-
+            /**Extract the english language population percentage**/
             ArrayList<CountryLanguage> population22 = new ArrayList<CountryLanguage>();
 
             ResultSet rset1 = pstmt1.executeQuery();
@@ -1152,6 +1182,8 @@ public class App {
                 population22.add(cl);
 
             }
+
+            /**Extract the english language population percentage**/
             ArrayList<CountryLanguage> population23 = new ArrayList<CountryLanguage>();
 
             ResultSet rset2 = pstmt2.executeQuery();
@@ -1164,7 +1196,7 @@ public class App {
                 population23.add(cl);
 
             }
-
+        /**Extract the english language population percentage**/
         ArrayList<CountryLanguage> population24 = new ArrayList<CountryLanguage>();
 
         ResultSet rset3 = pstmt3.executeQuery();
@@ -1178,12 +1210,12 @@ public class App {
 
         }
         /*China Language Code*/
-
+        /**Extract the Chinese language population percentage**/
         ArrayList<CountryLanguage> population31 = new ArrayList<CountryLanguage>();
         ResultSet rset4 = pstmt4.executeQuery();
 
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, String countryname, String language,  Float percentage*/
         while (rset4.next()) {
             CountryLanguage cl = new CountryLanguage();
             cl.setCode(rset4.getString(1));
@@ -1193,7 +1225,7 @@ public class App {
 
             population31.add(cl);
         }
-
+        /**Extract the Chinese language population percentage**/
         ArrayList<CountryLanguage> population32 = new ArrayList<CountryLanguage>();
 
         ResultSet rset5 = pstmt5.executeQuery();
@@ -1205,6 +1237,7 @@ public class App {
             population32.add(cl);
 
         }
+        /**Extract the Chinese language population percentage**/
         ArrayList<CountryLanguage> population33 = new ArrayList<CountryLanguage>();
 
         ResultSet rset6 = pstmt6.executeQuery();
@@ -1217,7 +1250,7 @@ public class App {
             population33.add(cl);
 
         }
-
+        /**Extract the Chinese language population percentage**/
         ArrayList<CountryLanguage> population34 = new ArrayList<CountryLanguage>();
 
         ResultSet rset7 = pstmt7.executeQuery();
@@ -1231,11 +1264,12 @@ public class App {
 
         }
                  /*Arabic Language Code*/
+        /**Extract the Arabic language population percentage**/
         ArrayList<CountryLanguage> population41 = new ArrayList<CountryLanguage>();
         ResultSet rset8 = pstmt8.executeQuery();
 
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, String countryname, String language,  Float percentage*/
         while (rset8.next()) {
             CountryLanguage cl = new CountryLanguage();
             cl.setCode(rset8.getString(1));
@@ -1245,7 +1279,7 @@ public class App {
 
             population41.add(cl);
         }
-
+        /**Extract the Arabic language population percentage**/
         ArrayList<CountryLanguage> population42 = new ArrayList<CountryLanguage>();
 
         ResultSet rset9 = pstmt9.executeQuery();
@@ -1257,6 +1291,7 @@ public class App {
             population42.add(cl);
 
         }
+        /**Extract the Arabic language population percentage**/
         ArrayList<CountryLanguage> population43 = new ArrayList<CountryLanguage>();
 
         ResultSet rset10 = pstmt10.executeQuery();
@@ -1269,7 +1304,7 @@ public class App {
             population43.add(cl);
 
         }
-
+        /**Extract the Arabic language population percentage**/
         ArrayList<CountryLanguage> population44 = new ArrayList<CountryLanguage>();
 
         ResultSet rset11 = pstmt11.executeQuery();
@@ -1286,8 +1321,9 @@ public class App {
         ArrayList<CountryLanguage> population51 = new ArrayList<CountryLanguage>();
         ResultSet rset12 = pstmt12.executeQuery();
 
+        /**Extract the Spanish language population percentage**/
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, String countryname, String language,  Float percentage*/
         while (rset12.next()) {
             CountryLanguage cl = new CountryLanguage();
             cl.setCode(rset12.getString(1));
@@ -1297,7 +1333,7 @@ public class App {
 
             population51.add(cl);
         }
-
+        /**Extract the Spanish language population percentage**/
         ArrayList<CountryLanguage> population52 = new ArrayList<CountryLanguage>();
 
         ResultSet rset13 = pstmt13.executeQuery();
@@ -1309,6 +1345,7 @@ public class App {
             population52.add(cl);
 
         }
+        /**Extract the Spanish language population percentage**/
         ArrayList<CountryLanguage> population53 = new ArrayList<CountryLanguage>();
 
         ResultSet rset14 = pstmt14.executeQuery();
@@ -1321,7 +1358,7 @@ public class App {
             population53.add(cl);
 
         }
-
+        /**Extract the Spanish language population percentage**/
         ArrayList<CountryLanguage> population54 = new ArrayList<CountryLanguage>();
 
         ResultSet rset15 = pstmt15.executeQuery();
@@ -1338,8 +1375,9 @@ public class App {
         ArrayList<CountryLanguage> population61 = new ArrayList<CountryLanguage>();
         ResultSet rset16 = pstmt16.executeQuery();
 
+        /**Extract the Hindi language population percentage**/
 
-        //String code, String name, String continent, String region, String capital-name, float population
+        /**String code, String countryname, String language,  Float percentage*/
         while (rset16.next()) {
             CountryLanguage cl = new CountryLanguage();
             cl.setCode(rset16.getString(1));
@@ -1349,7 +1387,7 @@ public class App {
 
             population61.add(cl);
         }
-
+        /**Extract the Hindi language population percentage**/
         ArrayList<CountryLanguage> population62 = new ArrayList<CountryLanguage>();
 
         ResultSet rset17 = pstmt17.executeQuery();
@@ -1361,6 +1399,7 @@ public class App {
             population62.add(cl);
 
         }
+        /**Extract the Hindi language population percentage**/
         ArrayList<CountryLanguage> population63 = new ArrayList<CountryLanguage>();
 
         ResultSet rset18 = pstmt18.executeQuery();
@@ -1373,7 +1412,7 @@ public class App {
             population63.add(cl);
 
         }
-
+        /**Extract the Hindi language population percentage**/
         ArrayList<CountryLanguage> population64 = new ArrayList<CountryLanguage>();
 
         ResultSet rset19 = pstmt19.executeQuery();
@@ -1388,7 +1427,7 @@ public class App {
         }
 
 
-
+        /**Display method of the English,Chinese,Hindi,Spanish and Arabic language population percentage world based population**/
                 for (int j = 0; j < population33.size(); j++) {
                     System.out.println("-------------------------------------------------------------------------------------------------------------------");
                     System.out.println("Language"+" "+"Total-Population-Percentage"+" "+ "Total-Population" );
