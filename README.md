@@ -15,4 +15,4 @@ Develop Build Status  ![GitHub Workflow Status](https://img.shields.io/github/wo
 
 [![codecov](https://codecov.io/gh/ThihaKZ16/group5/branch/master/graph/badge.svg?token=0QTEPAVLUW)](https://codecov.io/gh/ThihaKZ16/group5)
 
-[![codecov](https://codecov.io/gh/ThihaKZ16/group5/branch/master/graph/badge.svg?token=0QTEPAVLUW)](https://codecov.io/gh/ThihaKZ16/group5)
+[![codecov](https://codecov.io/gh/ThihaKZ16/group5/branch/develop/graph/badge.svg?token=0QTEPAVLUW)](https://codecov.io/gh/ThihaKZ16/group5)
