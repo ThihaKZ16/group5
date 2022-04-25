@@ -33,7 +33,7 @@
 | 29 | The population of people, people living in cities, and people not living in cities in each continent. | Yes | ![alt text](./././image of output/PeopleLiving/Peopleliving1.png)
 | 30 | The population of people, people living in cities, and people not living in cities in each region. | Yes | ![alt text](./././image of output/PeopleLiving/Peopleliving2.png)
 | 31 | The population of people, people living in cities, and people not living in cities in each country. | Yes | ![alt text](./././image of output/PeopleLiving/Peopleliving3.png)
-| 31 | Finally, the organisation has asked if it is possible to provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population:Chinese,English,Hindi,Spanish and Arabic.| Yes | ![alt text](./././image of output/Language/Language.png)
+| 32 | Finally, the organisation has asked if it is possible to provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population:Chinese,English,Hindi,Spanish and Arabic.| Yes | ![alt text](./././image of output/Language/Language.png)
 
 
 

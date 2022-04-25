@@ -2,7 +2,7 @@ name: A workflow for my Group5 App
 on:
   push:
     branches:
-      - develop
+      - master
       - Integration Test
 jobs:
   UnitTests:
