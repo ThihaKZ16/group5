@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//Create public class for population Integration Test
+/** Create public class for population Integration Test */
 public class PopulationIntegrationTest
 {
     static App app;
@@ -22,7 +22,7 @@ public class PopulationIntegrationTest
 
     }
 
-    //Test for Total Population in the Continent
+    /** Test for Total Population in the Continent */
     @Test
     void gettotalPopulationintheContinent() throws SQLException {
         ArrayList<Country> population2= app.gettotalpopulationinthecontinent("Asia");
@@ -37,7 +37,7 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the Region
+    /** Test for Population in the Region */
     @Test
     void gettotalPopulationintheRegion() throws SQLException {
         ArrayList<Country> population3= app.gettotalpopulationintheregion("Micronesia   ");
@@ -51,7 +51,7 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the Country
+    /** Test for Population in the Country */
     @Test
     void gettotalPopulationintheCountry() throws SQLException {
         ArrayList<Country> population4= app.gettotalpopulationinthecountry("Japan");
@@ -65,7 +65,7 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the District
+    /** Test for Population in the District */
     @Test
     void gettotalPopulationintheDistrict() throws SQLException {
         ArrayList<City> population5= app.gettotalpopulationinthedistrict("Zuid-Holland");
@@ -79,7 +79,7 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the City
+    /** Test for Population in the City */
     @Test
     void gettotalPopulationintheCity() throws SQLException {
         ArrayList<City> population6= app.gettotalpopulationinthecity("Rangoon (Yangon)");

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+/** Create public class for Capitalcity unit testing */
 public class CapitalcityUnitTesting
 {
     static App app;
@@ -15,20 +16,20 @@ public class CapitalcityUnitTesting
         app = new App();
         //app.connect("localhost:33060", 0);
     }
-
+    /** Test Null value for displaycapital */
     @Test
     void displayTestNull()
     {
         app.display(null);
     }
-
+    /** Test size for displaycapital */
     @Test
     void displayTestEmpty()
     {
         ArrayList<Country> capitalreport = new ArrayList<Country>();
         app.displaycapital(capitalreport);
     }
-
+    /** Test if displaycapital contains null value */
     @Test
     void displayTestContainsNull()
     {
@@ -36,7 +37,7 @@ public class CapitalcityUnitTesting
         capitalreport.add(null);
         app.displaycapital(capitalreport);
     }
-
+  /** Test display capitalcity */
     @Test
     void display()
     {

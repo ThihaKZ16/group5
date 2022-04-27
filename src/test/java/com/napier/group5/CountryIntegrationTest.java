@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-//Integration testing using queries data
+/** Create public class for Country Integration testing using queries data */
 public class CountryIntegrationTest
 {
     static App app;
@@ -24,7 +24,7 @@ public class CountryIntegrationTest
     }
 
 
-
+/**Test for countries in the world*/
     @Test
     void getcountriesintheworld() throws SQLException {
         ArrayList<Country> countries = app.getCountryPopLargesttoSmallest();
@@ -47,7 +47,7 @@ public class CountryIntegrationTest
     }
 
 
-
+    /**Test for countries in the continent*/
     @Test
     void getcountriesinthecontinent() throws SQLException {
         ArrayList<Country> countries1 = app.getCountryPopbyContinent("Asia");
@@ -68,7 +68,7 @@ public class CountryIntegrationTest
 
 
     }
-
+    /**Test for countries in the region*/
     @Test
     void getcountriesinaregion() throws SQLException {
         ArrayList<Country> countries2 = app.getCountryPopbyRegion("Caribbean");
@@ -88,7 +88,7 @@ public class CountryIntegrationTest
         assertEquals(1.1201E7,country.getPopulation());
 
     }
-
+    /**Test for topcountries in the world*/
     @Test
     void gettopcountriesintheworld() throws SQLException {
         ArrayList<Country> countries3 = app.gettopCountryPopLargesttoSmallest(3);
@@ -108,7 +108,7 @@ public class CountryIntegrationTest
         assertEquals(2.78356992E8,country.getPopulation());
 
     }
-
+    /**Test for topcountries in the continent*/
     @Test
     void gettopcountriesinthecontinent() throws SQLException {
         ArrayList<Country> countries4 = app.gettopCountryPopbyContinent("Asia", 2);
@@ -129,7 +129,7 @@ public class CountryIntegrationTest
 
     }
 
-
+    /**Test for topcountries in the region*/
     @Test
     void gettopcountriesintheregion() throws SQLException {
         ArrayList<Country> countries5 = app.gettopCountryPopbyRegion("Caribbean", 2);

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/** Create public class for Capitalcity Integration Test */
 public class CapitalcityIntegrationTesting
 {
     static App app;
@@ -20,15 +21,7 @@ public class CapitalcityIntegrationTesting
 
     }
 
-//    @Test
-//    void testGetEmployee()
-//    {
-//        Employee emp = app.getEmployee(255530);
-//        assertEquals(emp.emp_no, 255530);
-//        assertEquals(emp.first_name, "Ronghao");
-//        assertEquals(emp.last_name, "Garigliano");
-//    }
-
+/** Test for Capitalcities in the world */
     @Test
     void getcapitalcitiesintheworld() throws SQLException {
         ArrayList<Country> capital = app.getCapitalPopLargesttoSmallestintheworld();
@@ -45,6 +38,7 @@ public class CapitalcityIntegrationTesting
         assertEquals(2256000,country.getPopulation());
     }
 
+    /** Test for Capitalcities in the continent*/
     @Test
     void getcapitalcitiesinthecontinent() throws SQLException {
         ArrayList<Country> capital1 = app.getCapitalPopLargesttoSmallestinacontinent("Asia");
@@ -60,7 +54,7 @@ public class CapitalcityIntegrationTesting
         assertEquals("Thailand",country.getConame());
         assertEquals(6320174,country.getPopulation());
     }
-
+    /** Test for top populated capitalcities  with continent */
     @Test
     void gettopNpopulatedcapitalcitieswithcontinent() throws SQLException {
         ArrayList<Country> capital2 = app.gettopNpopulatedcapitalcity("Asia", 5);
@@ -79,7 +73,7 @@ public class CapitalcityIntegrationTesting
         assertEquals(9604900,country.getPopulation());
 
     }
-
+    /** Test for Capitalcities in the region */
     @Test
     void getcapitalcitiesintheregion() throws SQLException {
         ArrayList<Country> capital3 = app.getCapitalPopLargesttoSmallestinaRegion("Caribbean");
@@ -99,7 +93,7 @@ public class CapitalcityIntegrationTesting
         assertEquals("587",country.getCode());
         assertEquals("Santo Domingo de Guzmán",country.getName());
     }
-
+    /** Test for Top Capitalcities in the world */
     @Test
     void gettopcapitalcitiesintheworld() throws SQLException {
         ArrayList<Country> capital4 = app.gettopNpopulatedcapitalcityintheworld(16);
@@ -118,7 +112,7 @@ public class CapitalcityIntegrationTesting
         assertEquals(8591309,country.getPopulation());
         assertEquals("Ciudad de México",country.getName());
     }
-
+    /** Test for Top Capitalcities in the region */
     @Test
     void gettopcapitalcitiesintheregion() throws SQLException {
         ArrayList<Country> capital5 = app.gettopNpopulatedcapitalcityinaRegion( "Caribbean",16);
@@ -137,96 +131,5 @@ public class CapitalcityIntegrationTesting
         assertEquals(884472,country.getPopulation());
         assertEquals("Port-au-Prince",country.getName());
     }
-//
-//
-
-//    @Test
-//    void TopNPopulatedCitiesintheWorld() throws SQLException {
-//        ArrayList<City> cities5 = app.getTOPNumberofPopulatedCitiesinWorld(6);
-//        City city=null;boolean flag= false;
-//        for (City c:cities5){
-//            //2331             Seoul    KOR              Seoul            9981619.0        Asia             Eastern Asia
-//
-//            if (c.getId() == 2331)
-//            {
-//                city = c;flag = true;
-//                break;
-//            }
-//        }
-//        assertEquals("KOR",city.getCountryCode());
-//        assertEquals(9981619,city.getPopulation());
-//    }
-//
-//    @Test
-//    void TopNPopulatedCitiesinaContinent() throws SQLException {
-//        ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithcontinent("Asia",3);
-//        City city=null;boolean flag= false;
-//        for (City c:cities6){
-//            //1024             Mumbai (Bombay) IND              Maharashtra      1.05E7           Asia             Southern and Central Asia
-//
-//            if (c.getId() == 1024)
-//            {
-//                city = c;flag = true;
-//                break;
-//            }
-//        }
-//        assertEquals("Mumbai (Bombay)",city.getName());
-//        assertEquals("Maharashtra",city.getDistrict());
-//        assertEquals("Asia", city.getContinent());
-//        assertEquals("Southern and Central Asia", city.getRegion());
-//    }
-//
-//    @Test
-//    void TopNPopulatedCitiesinaRegion() throws SQLException {
-//        ArrayList<City> cities7 = app.getTOPNumberofpopulatedCitieswithregion("Western Africa",10);
-//        City city=null;boolean flag= false;
-//        for (City c:cities7){
-//            //2440             Monrovia         LBR              Montserrado      850000.0         Africa           Western Africa
-//            if (c.getId() == 2440)
-//            {
-//                city = c;flag = true;
-//                break;
-//            }
-//        }
-//        assertEquals("Africa",city.getContinent());
-//        assertEquals(850000,city.getPopulation());
-//        assertEquals("Monrovia",city.getName());
-//    }
-//
-//    @Test
-//    void TopNPopulatedCitiesinaCountry() throws SQLException {
-//        ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
-//        City city=null;boolean flag= false;
-//        for (City c:cities8){
-//            //73               Lomas de Zamora ARG              Buenos Aires     622013.0         South America    South America
-//            if (c.getId() == 73)
-//            {
-//                city = c;flag = true;
-//                break;
-//            }
-//        }
-//        assertEquals("Buenos Aires",city.getDistrict());
-//        assertEquals("ARG",city.getCountryCode());
-//        assertEquals("South America",city.getRegion());
-//    }
-//
-//    @Test
-//    void TopNPopulatedCitiesinaDistrict() throws SQLException {
-//        ArrayList<City> cities9 = app.getTOPNumberofpopulatedCitieswithdistrict("California",4);
-//        City city=null;boolean flag= false;
-//        for (City c:cities9){
-//            //3805             San Francisco USA              California       776733.0         North America    North America
-//            if (c.getId() == 3805)
-//            {
-//                city = c;flag = true;
-//                break;
-//            }
-//        }
-//        assertEquals("North America",city.getRegion());
-//        assertEquals("USA", city.getCountryCode());
-//        assertEquals(776733, city.getPopulation());
-//        assertEquals("North America", city.getContinent());
-//        assertEquals("United States", city.getConame());
-//    }
 
 }

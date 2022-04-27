@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
+/** Create public class for country unit testing */
 public class Countries
 {
     static App app;
@@ -15,20 +15,20 @@ public class Countries
         app = new App();
         app.connect("localhost:33060", 0);
     }
-
+    /** Test Null value for displaycountry */
     @Test
     void displayTestNull()
     {
         app.displaycountry(null);
     }
-
+    /** Test size for displaycountry */
     @Test
     void displayTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
         app.displaycountry(countries);
     }
-
+    /** Test if displaycountry contains null value */
     @Test
     void displayTestContainsNull()
     {
@@ -36,7 +36,7 @@ public class Countries
         countries.add(null);
         app.displaycountry(countries);
     }
-
+    /** Test display country */
     @Test
     void displaycountry()
     {

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/** Create public class for City Integration Test */
 public class CityIntegrationTest
 {
     static App app;
@@ -20,15 +20,7 @@ public class CityIntegrationTest
 
     }
 
-//    @Test
-//    void testGetEmployee()
-//    {
-//        Employee emp = app.getEmployee(255530);
-//        assertEquals(emp.emp_no, 255530);
-//        assertEquals(emp.first_name, "Ronghao");
-//        assertEquals(emp.last_name, "Garigliano");
-//    }
-
+    /** Test for cities in the world */
     @Test
     void getcitiesintheworld() throws SQLException {
         ArrayList<City> cities = app.getcitiesintheworldLargesttoSmallest();
@@ -44,7 +36,7 @@ public class CityIntegrationTest
         assertEquals("Rangoon (Yangon)",city.getName());
         assertEquals(3361700,city.getPopulation());
     }
-
+    /** Test for cities in the continent*/
     @Test
     void getcitiesinthecontinent() throws SQLException {
         ArrayList<City> cities1 = app.getcitiesinthecontinentLargesttoSmallest("Asia");
@@ -60,7 +52,7 @@ public class CityIntegrationTest
         assertEquals("South Dum Dum",city.getName());
         assertEquals(232811,city.getPopulation());
     }
-
+    /** Test for cities in the region */
     @Test
     void getcitiesintheregion() throws SQLException {
         ArrayList<City> cities2 = app.getcitiesintheregionLargesttoSmallest("British Islands");
@@ -79,7 +71,7 @@ public class CityIntegrationTest
         assertEquals("Poole",city.getName());
 
     }
-
+    /** Test for cities in the country */
     @Test
     void getcitiesinthecountry() throws SQLException {
         ArrayList<City> cities3 = app.getcitiesinthecountryLargesttoSmallest("Finland");
@@ -99,7 +91,7 @@ public class CityIntegrationTest
         assertEquals("FIN",city.getCountryCode());
         assertEquals("Helsinki [Helsingfors]",city.getName());
     }
-
+    /** Test for cities in the district */
     @Test
     void getcitiesinthedistrict() throws SQLException {
         ArrayList<City> cities4 = app.getcitiesinthedistrictLargesttoSmallest("Shanghai");
@@ -118,7 +110,7 @@ public class CityIntegrationTest
         assertEquals("CHN",city.getCountryCode());
         assertEquals("Shanghai",city.getName());
     }
-
+    /** Test for toppopulatedcities in the world */
     @Test
     void TopNPopulatedCitiesintheWorld() throws SQLException {
         ArrayList<City> cities5 = app.getTOPNumberofPopulatedCitiesinWorld(6);
@@ -135,7 +127,7 @@ public class CityIntegrationTest
         assertEquals("KOR",city.getCountryCode());
         assertEquals(9981619,city.getPopulation());
     }
-
+    /** Test for toppopulatedcities in a continent */
     @Test
     void TopNPopulatedCitiesinaContinent() throws SQLException {
         ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithcontinent("Asia",3);
@@ -154,7 +146,7 @@ public class CityIntegrationTest
         assertEquals("Asia", city.getContinent());
         assertEquals("Southern and Central Asia", city.getRegion());
     }
-
+    /** Test for toppopulatedcities in the region */
     @Test
     void TopNPopulatedCitiesinaRegion() throws SQLException {
         ArrayList<City> cities7 = app.getTOPNumberofpopulatedCitieswithregion("Western Africa",10);
@@ -171,7 +163,7 @@ public class CityIntegrationTest
         assertEquals(850000,city.getPopulation());
         assertEquals("Monrovia",city.getName());
     }
-
+    /** Test for toppopulatedcities in a country */
     @Test
     void TopNPopulatedCitiesinaCountry() throws SQLException {
         ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
@@ -188,7 +180,7 @@ public class CityIntegrationTest
         assertEquals("ARG",city.getCountryCode());
         assertEquals("South America",city.getRegion());
     }
-
+    /** Test for toppopulatedcities in a district */
     @Test
     void TopNPopulatedCitiesinaDistrict() throws SQLException {
         ArrayList<City> cities9 = app.getTOPNumberofpopulatedCitieswithdistrict("California",4);
