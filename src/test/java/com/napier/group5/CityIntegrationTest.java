@@ -1,3 +1,4 @@
+/** import package from com.napier.group5 */
 package com.napier.group5;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -8,10 +9,12 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/** create public class "CityIntegrationTest" */
 public class CityIntegrationTest
 {
     static App app;
 
+    /** connection with app.java with localhost:33060 */
     @BeforeAll
     static void init()
     {
@@ -20,15 +23,8 @@ public class CityIntegrationTest
 
     }
 
-//    @Test
-//    void testGetEmployee()
-//    {
-//        Employee emp = app.getEmployee(255530);
-//        assertEquals(emp.emp_no, 255530);
-//        assertEquals(emp.first_name, "Ronghao");
-//        assertEquals(emp.last_name, "Garigliano");
-//    }
 
+    /** integration test for the total cities in the world*/
     @Test
     void getcitiesintheworld() throws SQLException {
         ArrayList<City> cities = app.getcitiesintheworldLargesttoSmallest();
@@ -41,10 +37,13 @@ public class CityIntegrationTest
                 break;
             }
         }
+
+        /** test with the following attributes*/
         assertEquals("Rangoon (Yangon)",city.getName());
         assertEquals(3361700,city.getPopulation());
     }
 
+    /** integration test for the total cities in the continent*/
     @Test
     void getcitiesinthecontinent() throws SQLException {
         ArrayList<City> cities1 = app.getcitiesinthecontinentLargesttoSmallest("Asia");
@@ -57,10 +56,13 @@ public class CityIntegrationTest
                 break;
             }
         }
+
+        /** test with the following attributes*/
         assertEquals("South Dum Dum",city.getName());
         assertEquals(232811,city.getPopulation());
     }
 
+    /** integration test for the total cites in the region */
     @Test
     void getcitiesintheregion() throws SQLException {
         ArrayList<City> cities2 = app.getcitiesintheregionLargesttoSmallest("British Islands");
@@ -74,18 +76,21 @@ public class CityIntegrationTest
                 break;
             }
         }
-        //GBR','United Kingdom','Europe','British Islands
+
+        /** test with the following attributes */
+
         assertEquals("GBR",city.getCountryCode());
         assertEquals("Poole",city.getName());
 
     }
 
+    /** integration test for the total cities in the country */
     @Test
     void getcitiesinthecountry() throws SQLException {
         ArrayList<City> cities3 = app.getcitiesinthecountryLargesttoSmallest("Finland");
         City city=null;boolean flag= false;
         for (City c:cities3){
-            //3236,'Helsinki [Helsingfors]','FIN','Newmaa',555474
+
 
             if (c.getId() == 3236)
             {
@@ -93,19 +98,22 @@ public class CityIntegrationTest
                 break;
             }
         }
-        //FIN','Finland','Europe','Nordic Countries
+
+        /** test with the following attributes */
+
         assertEquals("Newmaa",city.getDistrict());
         assertEquals(555474,city.getPopulation());
         assertEquals("FIN",city.getCountryCode());
         assertEquals("Helsinki [Helsingfors]",city.getName());
     }
 
+    /** integration test for the total cities in the district */
     @Test
     void getcitiesinthedistrict() throws SQLException {
         ArrayList<City> cities4 = app.getcitiesinthedistrictLargesttoSmallest("Shanghai");
         City city=null;boolean flag= false;
         for (City c:cities4){
-            //1890,'Shanghai','CHN','Shanghai',9696300
+
 
             if (c.getId() == 1890)
             {
@@ -113,18 +121,20 @@ public class CityIntegrationTest
                 break;
             }
         }
-        //'CHN','China','Asia','Eastern Asia'
+
+        /** test with the following attributes */
+
         assertEquals(9696300,city.getPopulation());
         assertEquals("CHN",city.getCountryCode());
         assertEquals("Shanghai",city.getName());
     }
 
+    /** integration test for the top N populated cities in the world */
     @Test
     void TopNPopulatedCitiesintheWorld() throws SQLException {
         ArrayList<City> cities5 = app.getTOPNumberofPopulatedCitiesinWorld(6);
         City city=null;boolean flag= false;
         for (City c:cities5){
-            //2331             Seoul    KOR              Seoul            9981619.0        Asia             Eastern Asia
 
             if (c.getId() == 2331)
             {
@@ -132,10 +142,13 @@ public class CityIntegrationTest
                 break;
             }
         }
+
+        /** test with the following attributes */
         assertEquals("KOR",city.getCountryCode());
         assertEquals(9981619,city.getPopulation());
     }
 
+    /** integration test for the top N populated cities in the continent */
     @Test
     void TopNPopulatedCitiesinaContinent() throws SQLException {
         ArrayList<City> cities6 = app.getTOPNumberofpopulatedCitieswithcontinent("Asia",3);
@@ -149,46 +162,55 @@ public class CityIntegrationTest
                 break;
             }
         }
+
+        /** test with the following attributes */
         assertEquals("Mumbai (Bombay)",city.getName());
         assertEquals("Maharashtra",city.getDistrict());
         assertEquals("Asia", city.getContinent());
         assertEquals("Southern and Central Asia", city.getRegion());
     }
 
+    /** integration test for the top N populated cities in the region */
     @Test
     void TopNPopulatedCitiesinaRegion() throws SQLException {
         ArrayList<City> cities7 = app.getTOPNumberofpopulatedCitieswithregion("Western Africa",10);
         City city=null;boolean flag= false;
         for (City c:cities7){
-            //2440             Monrovia         LBR              Montserrado      850000.0         Africa           Western Africa
+
             if (c.getId() == 2440)
             {
                 city = c;flag = true;
                 break;
             }
         }
+
+        /** test with the following attributes */
         assertEquals("Africa",city.getContinent());
         assertEquals(850000,city.getPopulation());
         assertEquals("Monrovia",city.getName());
     }
 
+     /** integration test for the top N populated cities in the country*/
     @Test
     void TopNPopulatedCitiesinaCountry() throws SQLException {
         ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
         City city=null;boolean flag= false;
         for (City c:cities8){
-            //73               Lomas de Zamora ARG              Buenos Aires     622013.0         South America    South America
+
             if (c.getId() == 73)
             {
                 city = c;flag = true;
                 break;
             }
         }
+
+        /** test with the following attributes */
         assertEquals("Buenos Aires",city.getDistrict());
         assertEquals("ARG",city.getCountryCode());
         assertEquals("South America",city.getRegion());
     }
 
+    /** integration test for the top N populated cities in the district */
     @Test
     void TopNPopulatedCitiesinaDistrict() throws SQLException {
         ArrayList<City> cities9 = app.getTOPNumberofpopulatedCitieswithdistrict("California",4);
@@ -201,6 +223,8 @@ public class CityIntegrationTest
                 break;
             }
         }
+
+        /** test with the following attributes */
         assertEquals("North America",city.getRegion());
         assertEquals("USA", city.getCountryCode());
         assertEquals(776733, city.getPopulation());
