@@ -50,7 +50,6 @@ public class App {
 
         /** ************************End of country reports*********************/
 
-
         /** ************************Start of city reports*********************/
 
         System.out.println("\n All the cities in the world organised by largest population to smallest.");
