@@ -28,7 +28,7 @@ public class PopulationIntegrationTest
         ArrayList<Country> population2= app.gettotalpopulationinthecontinent("Asia");
         Country country=null;boolean flag= false;
         for (Country c:population2){
-            //2710,'Rangoon (Yangon)','MMR','Rangoon [Yangon]',3361700
+
             if (c.getPopulation() == 3.70502579E9)
             {
                 country = c;flag = true;

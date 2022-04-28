@@ -16,7 +16,7 @@ public class PopulationUnitTest
     static void init()
     {
         app = new App();
-        //app.connect("localhost:33060", 0);
+
     }
 
     /**Test Null value for displaypopulation1*/

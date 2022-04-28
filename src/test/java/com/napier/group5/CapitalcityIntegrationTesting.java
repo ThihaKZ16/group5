@@ -64,7 +64,7 @@ public class CapitalcityIntegrationTesting
         ArrayList<Country> capital2 = app.gettopNpopulatedcapitalcity("Asia", 5);
         Country country=null;boolean flag= false;
         for (Country cap:capital2){
-            //499,'Poole','GBR','England',141000
+
 
             if (cap.getCode().equals("939"))
             {
@@ -72,7 +72,7 @@ public class CapitalcityIntegrationTesting
                 break;
             }
         }
-        //GBR','United Kingdom','Europe','British Islands
+
         assertEquals("Indonesia",country.getConame());
         assertEquals(9604900,country.getPopulation());
 

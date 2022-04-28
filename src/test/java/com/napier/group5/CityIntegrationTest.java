@@ -196,7 +196,7 @@ public class CityIntegrationTest
         ArrayList<City> cities8 = app.getTOPNumberofpopulatedCitieswithcountry("Argentina",10);
         City city=null;boolean flag= false;
         for (City c:cities8){
-            //73               Lomas de Zamora ARG              Buenos Aires     622013.0         South America    South America
+
             if (c.getId() == 73)
             {
                 city = c;flag = true;

@@ -15,7 +15,7 @@ public class CapitalcityUnitTesting
     static void init()
     {
         app = new App();
-        //app.connect("localhost:33060", 0);
+
     }
 
     /**Test Null value for display*/

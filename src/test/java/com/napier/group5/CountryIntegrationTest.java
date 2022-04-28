@@ -78,7 +78,7 @@ public class CountryIntegrationTest
         ArrayList<Country> countries2 = app.getCountryPopbyRegion("Caribbean");
         Country country=null;boolean flag= false;
         for (Country c:countries2){
-            //1134,'South Dum Dum','IND','West Bengali',232811
+
             if (c.getCode().equals("CUB"))
             {
                 country = c;flag = true;
