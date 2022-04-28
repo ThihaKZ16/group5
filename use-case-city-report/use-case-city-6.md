@@ -1,8 +1,8 @@
-#USE CASE: 6 The top 10 populated cities in the world where 10 is provided by the user.
+#USE CASE: 6 The top N populated cities in the world where 10 is provided by the user.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
 
-As an *Executive Director* I want *to produce a report on top 10 populated cities in the world by user * so that *I can support financial reporting of the organisation.*
+As an *Executive Director* I want *to produce a report on top N populated cities in the world by user * so that *I can support financial reporting of the organisation.*
 ###Scope
 
 Organization.

@@ -1,4 +1,4 @@
-# USE CASE: 4 The top 10 populated countries in the world where data is provided by the user.
+# USE CASE: 4 The top N populated countries in the world where data is provided by the user.
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context

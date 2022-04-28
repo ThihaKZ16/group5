@@ -1,8 +1,8 @@
-#USE CASE: 6 The top 10 populated capital cities in a region where 10 is provided by the user.
+#USE CASE: 6 The top N populated capital cities in a region where 10 is provided by the user.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
 
-As an *Executive Director* I want *to produce a report on the top 10 populated capital cities  in a region by the user * so that *I can support financial reporting of the organisation.*
+As an *Executive Director* I want *to produce a report on the top N populated capital cities  in a region by the user * so that *I can support financial reporting of the organisation.*
 ###Scope
 
 Organization.
