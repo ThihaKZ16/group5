@@ -1,4 +1,4 @@
-# USE CASE: 5 The top 10 populated countries in a continent where data is provided by the user.
+# USE CASE: 5 The top N populated countries in a continent where data is provided by the user.
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context

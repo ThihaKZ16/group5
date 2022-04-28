@@ -1,34 +1,40 @@
+/**  import package from com.napier.group5 */
 package com.napier.group5;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-/** Create public class for country unit testing */
+
+/** create public class "Countries" */
 public class Countries
 {
     static App app;
 
+    /** connection with app.java */
     @BeforeAll
     static void init()
     {
         app = new App();
         app.connect("localhost:33060", 0);
     }
-    /** Test Null value for displaycountry */
+
+    /** null value test for display */
     @Test
     void displayTestNull()
     {
         app.displaycountry(null);
     }
-    /** Test size for displaycountry */
+
+    /** test size for display */
     @Test
     void displayTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
         app.displaycountry(countries);
     }
-    /** Test if displaycountry contains null value */
+
+    /** test if there are null values in display */
     @Test
     void displayTestContainsNull()
     {
@@ -36,7 +42,8 @@ public class Countries
         countries.add(null);
         app.displaycountry(countries);
     }
-    /** Test display country */
+
+    /** manual input testing */
     @Test
     void displaycountry()
     {
