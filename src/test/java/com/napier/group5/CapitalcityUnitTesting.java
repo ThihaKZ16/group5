@@ -1,15 +1,11 @@
 package com.napier.group5;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 /** Create public class for Capitalcity unit testing */
 public class CapitalcityUnitTesting
 {
     static App app;
-
     @BeforeAll
     static void init()
     {
@@ -49,9 +45,7 @@ public class CapitalcityUnitTesting
         cap.setRegion( "Caribbean");
         cap.setName("La Habana");
         cap.setPopulation( 2256000);
-
         capitalreport.add(cap);
         app.displaycapital(capitalreport);
     }
-
 }

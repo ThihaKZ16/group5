@@ -1,14 +1,11 @@
 package com.napier.group5;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 /** Create public class for city unit testing */
 public class cities
 {
     static App app;
-
     @BeforeAll
     static void init()
     {
@@ -49,9 +46,7 @@ public class cities
         ci.setContinent("Asia");
         ci.setRegion("Eastern Asia");
         ci.setConame("South Korea");
-
         cities.add(ci);
         app.display(cities);
     }
-
 }
