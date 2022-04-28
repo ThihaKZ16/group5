@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /** Create public class for Capitalcity unit testing */
 public class CapitalcityUnitTesting
 {
+
     static App app;
     @BeforeAll
     static void init()

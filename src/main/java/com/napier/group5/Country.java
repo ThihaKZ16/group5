@@ -32,7 +32,6 @@ public class Country {
         this.peoplenotliving = peoplenotliving;
     }
 
-
     /**Assigning each database variable with java variable function for Country*/
     public Country() {
         this.code = code;

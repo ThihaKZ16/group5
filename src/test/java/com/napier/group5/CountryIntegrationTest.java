@@ -122,6 +122,7 @@ public class CountryIntegrationTest
                 break;
             }
         }
+
         /** test with the following attributes */
         assertEquals("Dominican Republic",country.getConame());
         assertEquals("North America",country.getContinent());

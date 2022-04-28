@@ -53,6 +53,7 @@ public class PopulationIntegrationTest
             }
         }
     }
+
     /** Test for Population in the District */
     @Test
     void gettotalPopulationintheDistrict() throws SQLException {

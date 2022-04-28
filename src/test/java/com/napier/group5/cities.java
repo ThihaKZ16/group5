@@ -37,6 +37,7 @@ public class cities
     @Test
     void display()
     {
+
         ArrayList<City> cities = new ArrayList<City>();
         City ci = new City();
         ci.setName("Seoul");

@@ -47,7 +47,6 @@ public class App {
         System.out.println("\n The top N populated countries in a region where N is provided by the user.");
         ArrayList<Country> countries5 = a.gettopCountryPopbyRegion("Caribbean", 2);
         a.displaycountry(countries5);
-
         /** ************************End of country reports*********************/
 
         /** ************************Start of city reports*********************/

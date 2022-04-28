@@ -14,6 +14,7 @@ public class CapitalcityIntegrationTesting
         app = new App();
         app.connect("localhost:33060", 0);
     }
+
 /** Test for Capitalcities in the world */
     @Test
     void getcapitalcitiesintheworld() throws SQLException {

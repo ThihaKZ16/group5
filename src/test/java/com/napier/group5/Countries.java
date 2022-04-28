@@ -24,6 +24,7 @@ public class Countries
     @Test
     void displayTestEmpty()
     {
+
         ArrayList<Country> countries = new ArrayList<Country>();
         app.displaycountry(countries);
     }

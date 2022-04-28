@@ -83,6 +83,7 @@ public class CityIntegrationTest
         assertEquals("FIN",city.getCountryCode());
         assertEquals("Helsinki [Helsingfors]",city.getName());
     }
+
     /** integration test for the total cities in the district */
     @Test
     void getcitiesinthedistrict() throws SQLException {

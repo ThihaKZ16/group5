@@ -5,7 +5,6 @@ public class City {
 
     /**Declaration for the City  variables*/
     private int id;
-
     private String name;
     private String countrycode;
     private String district;

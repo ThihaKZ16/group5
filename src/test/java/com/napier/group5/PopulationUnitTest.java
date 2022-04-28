@@ -120,6 +120,7 @@ public class PopulationUnitTest
         populationdistrict.add(null);
         app.displaypopulation5(populationdistrict);
     }
+
     /** Test Null value for displaypopulation6 */
     @Test
     void displaypopulation6TestNull()
