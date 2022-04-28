@@ -243,7 +243,7 @@ public class App {
         }
         return countries;
     }
-    /**Extract populated countries from a continent*/
+    /**Extract all populated countries from a continent*/
     public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
         String sql = "select country.code, country.name, country.continent, country.region, city.name, country.population from country, city where country.capital = city.id AND country.continent=? order by country.population desc";
         /*prepare statement*/
@@ -269,7 +269,7 @@ public class App {
 
 
 
-    /**Extract populated countries from a region*/
+    /**Extract all populated countries from a region*/
     public ArrayList<Country> getCountryPopbyRegion(String contn) throws SQLException {
         String sql = "select country.code,country.name,country.continent,country.region,city.name,country.population from country,city where country.capital = city.id AND country.region=? order by country.population desc";
         /*prepare statement*/
@@ -364,7 +364,7 @@ public class App {
         return countries5;
     }
     /************************ End of country report features**************************/
-
+    /**Extract all the populated cities on the world*/
     public ArrayList<City> getcitiesintheworldLargesttoSmallest() throws SQLException {
         String sql =
                 "select city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  from city,country where city.countrycode = country.code order by city.Population desc";
@@ -388,7 +388,7 @@ public class App {
         }
         return cities;
     }
-
+    /**Extract all the populated cities from a continent */
     public ArrayList<City> getcitiesinthecontinentLargesttoSmallest(String countrycontinent) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.continent= ? ORDER BY city.Population DESC";
         /**prepare statement*/
@@ -412,6 +412,7 @@ public class App {
         }
         return cities1;
     }
+    /**Extract all the populated cities from a region */
     public ArrayList<City> getcitiesintheregionLargesttoSmallest(String countryregion) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode = country.code AND country.region= ? ORDER BY city.Population DESC";
         /**prepare statement*/
@@ -484,7 +485,7 @@ public class App {
         }
         return cities4;
     }
-
+    /**Extract top number of populated cities on the world */
     public ArrayList<City> getTOPNumberofPopulatedCitiesinWorld(Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code ORDER BY city.Population DESC LIMIT ? ";
         /**prepare statement*/
@@ -508,6 +509,7 @@ public class App {
         }
         return cities5;
     }
+    /**Extract top populated cities from the continent */
     public ArrayList<City> getTOPNumberofpopulatedCitieswithcontinent(String countrycontinent,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.continent = ? ORDER BY city.Population DESC LIMIT ? ";
         /*prepare statement*/
@@ -532,6 +534,7 @@ public class App {
         }
         return cities6;
     }
+    /**Extract top populated cities from the region */
     public ArrayList<City> getTOPNumberofpopulatedCitieswithregion(String countryregion,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name  FROM city,country WHERE city.countrycode=country.code AND country.region = ? ORDER BY city.Population DESC LIMIT ? ";
         /*prepare statement*/
@@ -557,6 +560,7 @@ public class App {
         }
         return cities7;
     }
+    /**Extract top populated cities from the country */
     public ArrayList<City> getTOPNumberofpopulatedCitieswithcountry(String countryname,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND country.name = ? ORDER BY city.Population DESC LIMIT ? ";
         /*prepare statement*/
@@ -581,6 +585,7 @@ public class App {
         }
         return cities8;
     }
+    /**Extract top populated cities from the district */
     public ArrayList<City> getTOPNumberofpopulatedCitieswithdistrict(String citydistrict,Integer number) throws SQLException {
         String sql ="SELECT city.id, city.name,city.countrycode,city.district,city.population,country.continent,country.region,country.name FROM city,country WHERE city.countrycode=country.code AND city.district = ? ORDER BY city.Population DESC LIMIT ? ";
         /*prepare statement*/
@@ -606,7 +611,7 @@ public class App {
         return cities9;
     }
 
-    //Extract all populated capital cities on the world
+    /** Extract all populated capital cities on the world */
     public ArrayList<Country> getCapitalPopLargesttoSmallestintheworld() throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id order by city.population desc";
         /*prepare statement*/
@@ -627,7 +632,7 @@ public class App {
         }
         return capital;
     }
-
+    /** Extract all populated capital cities on the continent */
     public ArrayList<Country> getCapitalPopLargesttoSmallestinacontinent(String capitalcontinent) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.continent = ? order by city.population desc";
         /*prepare statement*/
@@ -649,7 +654,7 @@ public class App {
         }
         return capital1;
     }
-
+    /** Extract top populated capital cities from the city */
     public ArrayList<Country> gettopNpopulatedcapitalcity(String capitalcontinent, Integer number) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.continent = ? order by city.population desc LIMIT ?";
         /*prepare statement*/
@@ -672,7 +677,7 @@ public class App {
         }
         return capital2;
     }
-
+    /** Extract all populated capital cities from the region */
     public ArrayList<Country> getCapitalPopLargesttoSmallestinaRegion(String region) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.region = ? order by city.population desc";
         /*prepare statement*/
@@ -694,7 +699,7 @@ public class App {
         }
         return capital3;
     }
-
+    /** Extract top populated capital cities on the world */
     public ArrayList<Country> gettopNpopulatedcapitalcityintheworld(Integer worldtopnumber) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id order by city.population desc LIMIT ?";
         /*prepare statement*/
@@ -716,7 +721,7 @@ public class App {
         }
         return capital4;
     }
-
+    /** Extract top populated capital cities from the region */
     public ArrayList<Country> gettopNpopulatedcapitalcityinaRegion(String region, Integer regiontopnumber) throws SQLException {
         String sql = "select country.capital, country.name, country.continent, country.region, city.name, city.population from country,city where country.capital = city.id and country.region = ? order by city.population desc LIMIT ?";
         /*prepare statement*/
@@ -1043,10 +1048,7 @@ public class App {
             Country c = new Country();
             c.setCode(rset.getString(1));
             c.setPeoplenotliving(rset.getFloat("peoplenotliving"));
-
             population7.add(c);
-
-
 
         }
         /** Extract peoplelivingornotliving population of the country**/
@@ -1085,8 +1087,6 @@ public class App {
                 System.out.println("People Living in cities"+" "+population8.get(j).getPeopleliving()+"%"+"\n"+"Country"+" "+population10.get(j).getConame());
             }
         }
-
-
 
     }
 
@@ -1484,6 +1484,7 @@ public class App {
             }
         }
     }
+    /**display function for capital city branch*/
     public void displaycapital(ArrayList<Country> capitalreport) {
         if (capitalreport == null) {
             System.out.println("No null values in capital city data");
@@ -1506,7 +1507,7 @@ public class App {
             }
         }
     }
-
+    /**display function for city branch*/
     public void display(ArrayList<City> report) {
         /** Check city value is not null*/
         if (report == null) {
@@ -1531,6 +1532,7 @@ public class App {
             }
         }
     }
+    /**display function for total population in the world*/
     public void displaypopulation1(ArrayList<Country> populationreport) {
         if (populationreport == null) {
             System.out.println("No null values in Population data");
@@ -1554,6 +1556,7 @@ public class App {
             }
         }
     }
+    /**display function for total population in the continent*/
     public void displaypopulation2(ArrayList<Country> populationcontinent) {
         if (populationcontinent == null) {
             System.out.println("No null values in Population data");
@@ -1577,6 +1580,7 @@ public class App {
             }
         }
     }
+    /**display function for total population in the region*/
     public void displaypopulation3(ArrayList<Country> populationregion) {
         if (populationregion == null) {
             System.out.println("No null values in Population data");
@@ -1600,6 +1604,7 @@ public class App {
             }
         }
     }
+    /**display function for total population in the country*/
     public void displaypopulation4(ArrayList<Country> populationcountry) {
         if (populationcountry == null) {
             System.out.println("No null values in Population data");
@@ -1623,6 +1628,7 @@ public class App {
             }
         }
     }
+    /**display function for total population in the district*/
     public void displaypopulation5(ArrayList<City> populationdistrict) {
         if (populationdistrict == null) {
             System.out.println("No null values in Population data");
@@ -1646,6 +1652,7 @@ public class App {
             }
         }
     }
+    /**display function for total population in the city*/
     public void displaypopulation6(ArrayList<City> populationcity) {
         if (populationcity == null) {
             System.out.println("No null values in Population data");
@@ -1669,32 +1676,6 @@ public class App {
             }
         }
     }
-
-//    public void displaypopulation7(ArrayList<Country> peoplelivingincontinent) {
-//        if (peoplelivingincontinent == null) {
-//            System.out.println("No null values in Population data");
-//            return;
-//        } else if (peoplelivingincontinent.size() == 0)
-//            System.out.println("There is no total population in the Region");
-//        else {
-//
-//            System.out.println("-------------------------------------------------------------------------------------------------------------------");
-//            System.out.printf(String.format("%-16s %-16s %-16s", "People Living In Cities ","Continent", "People Not Living In Cities "));
-//            System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
-//            // Loop over all cities in the list
-//            for (Country c : peoplelivingincontinent) {
-//                if (c == null)
-//                    continue;
-//                String population_string =
-//                        String.format("%-16s %-16s %-16s",
-//                                c.getPeopleliving(),c.getContinent(),c.getPeoplenotliving());
-//                System.out.printf(population_string);
-//                System.out.println("\n----------------------------------------------------------------------------------------------------------------");
-//            }
-//        }
-//    }
-
-
 
 }
 
