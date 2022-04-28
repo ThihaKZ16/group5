@@ -1,4 +1,4 @@
-//import package from com.napier.group5
+/** import package from com.napier.group5 */
 package com.napier.group5;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-//create public class "Countries"
+/** create public class "Countries" */
 public class Countries
 {
     static App app;
 
-    //connection with app.java
+    /** connection with app.java */
     @BeforeAll
     static void init()
     {
@@ -19,14 +19,14 @@ public class Countries
         app.connect("localhost:33060", 0);
     }
 
-    //null value test for display
+    /** null value test for display */
     @Test
     void displayTestNull()
     {
         app.displaycountry(null);
     }
 
-    //test size for display
+    /** test size for display */
     @Test
     void displayTestEmpty()
     {
@@ -34,7 +34,7 @@ public class Countries
         app.displaycountry(countries);
     }
 
-    //test if there are null values in display
+    /** test if there are null values in display */
     @Test
     void displayTestContainsNull()
     {
@@ -43,7 +43,7 @@ public class Countries
         app.displaycountry(countries);
     }
 
-    //manual input testing
+    /** manual input testing */
     @Test
     void displaycountry()
     {

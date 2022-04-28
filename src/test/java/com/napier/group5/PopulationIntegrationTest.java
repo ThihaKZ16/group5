@@ -43,7 +43,7 @@ public class PopulationIntegrationTest
         ArrayList<Country> population3= app.gettotalpopulationintheregion("Micronesia   ");
         Country country=null;boolean flag= false;
         for (Country c:population3){
-            //1134,'South Dum Dum','IND','West Bengali',232811
+
             if (c.getPopulation() == 543000)
             {
                 country = c;flag = true;
@@ -51,13 +51,13 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the Country
+    /** Test for Population in the Country */
     @Test
     void gettotalPopulationintheCountry() throws SQLException {
         ArrayList<Country> population4= app.gettotalpopulationinthecountry("Japan");
         Country country=null;boolean flag= false;
         for (Country c:population4){
-            //1134,'South Dum Dum','IND','West Bengali',232811
+
             if (c.getPopulation() == 1.26714E8)
             {
                 country = c;flag = true;
@@ -65,13 +65,13 @@ public class PopulationIntegrationTest
         }
     }
 
-    //Test for Population in the District
+    /** Test for Population in the District */
     @Test
     void gettotalPopulationintheDistrict() throws SQLException {
         ArrayList<City> population5= app.gettotalpopulationinthedistrict("Zuid-Holland");
         City city=null;boolean flag= false;
         for (City c:population5){
-            //1134,'South Dum Dum','IND','West Bengali',232811
+
             if (c.getPopulation() == 1476710)
             {
                 city = c;flag = true;
@@ -85,7 +85,7 @@ public class PopulationIntegrationTest
         ArrayList<City> population6= app.gettotalpopulationinthecity("Rangoon (Yangon)");
         City city=null;boolean flag= false;
         for (City c:population6){
-            //1134,'South Dum Dum','IND','West Bengali',232811
+
             if (c.getPopulation() == 3361700)
             {
                 city = c;flag = true;
