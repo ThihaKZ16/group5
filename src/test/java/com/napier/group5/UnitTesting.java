@@ -90,7 +90,7 @@ public class UnitTesting {
     @Test
     void displayTestNull3()
     {
-        app.display(null);
+        app.displaycapital(null);
     }
     /** Test size for displaycapital */
     @Test
