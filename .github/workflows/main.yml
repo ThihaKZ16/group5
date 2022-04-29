@@ -21,6 +21,7 @@ jobs:
       - name: Unit Tests
         run:
           mvn -Dtest=com.napier.group5.Countries test
+          mvn -Dtest=com.napier.group5.cities test
 
 
 
