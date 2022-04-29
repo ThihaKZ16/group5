@@ -112,4 +112,5 @@ public class CapitalcityIntegrationTesting
         assertEquals(884472,country.getPopulation());
         assertEquals("Port-au-Prince",country.getName());
     }
+
 }

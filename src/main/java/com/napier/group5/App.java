@@ -21,7 +21,6 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-
         /** ************************Start of country reports*********************/
 
         System.out.println("\n All the countries in the world organised by largest population to smallest.");
