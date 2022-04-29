@@ -19,11 +19,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Unit Tests
-        run:
-          mvn -Dtest=com.napier.group5.Countries test
-          mvn -Dtest=com.napier.group5.cities test
-          mvn -Dtest=com.napier.group5.CapitalcityUnitTesting test
-          mvn -Dtest=com.napier.group5.PopulationUnitTest test
+        run: mvn -Dtest=com.napier.group5.App test
+
 
   IntegrationTests:
     name: Integration Tests
