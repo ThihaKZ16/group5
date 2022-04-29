@@ -3,7 +3,6 @@ package com.napier.group5;
 public class City {
 
 
-
     /**Declaration for the City  variables*/
     private int id;
     private String name;

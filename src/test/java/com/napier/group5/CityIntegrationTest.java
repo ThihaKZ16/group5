@@ -65,6 +65,7 @@ public class CityIntegrationTest
         assertEquals("GBR",city.getCountryCode());
         assertEquals("Poole",city.getName());
     }
+
     /** integration test for the total cities in the country */
     @Test
     void getcitiesinthecountry() throws SQLException {

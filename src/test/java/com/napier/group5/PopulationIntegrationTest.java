@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**Create public class for population Integration Test*/
 public class PopulationIntegrationTest
 {
+
     static App app;
     @BeforeAll
     static void init()

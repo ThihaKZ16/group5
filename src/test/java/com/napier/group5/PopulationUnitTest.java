@@ -6,6 +6,7 @@ import java.util.ArrayList;
 /** Create public class for population unit testing */
 public class PopulationUnitTest
 {
+
     static App app;
     /** Connect app.java with the unit testing file */
     @BeforeAll

@@ -29,6 +29,7 @@ public class CountryIntegrationTest
                 break;
             }
         }
+
         /** test with the following attributes */
         assertEquals("United States",country.getConame());
         assertEquals("North America",country.getContinent());

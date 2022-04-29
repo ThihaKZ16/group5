@@ -28,6 +28,7 @@ public class Countries
         ArrayList<Country> countries = new ArrayList<Country>();
         app.displaycountry(countries);
     }
+
     /** test if there are null values in display */
     @Test
     void displayTestContainsNull()

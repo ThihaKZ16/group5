@@ -30,6 +30,7 @@ public class CapitalcityIntegrationTesting
         }
         assertEquals("Cuba",country.getConame());
         assertEquals(2256000,country.getPopulation());
+
     }
     /** Test for Capitalcities in the continent*/
     @Test

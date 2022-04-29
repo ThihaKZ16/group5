@@ -9,7 +9,6 @@ public class App {
      */
     private Connection con = null;
 
-
     public static void main(String[] args) throws SQLException {
         /** Create new Application**/
         App a = new App();

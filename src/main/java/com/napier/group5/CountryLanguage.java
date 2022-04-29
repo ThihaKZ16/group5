@@ -2,7 +2,6 @@ package com.napier.group5;
 /**Build countrylanguage class*/
 public class CountryLanguage {
 
-
 /**Declaration for the Country Language variable*/
     private String countrycode;
     private String language;
